@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     
-    <name>Daniel Catania & Connor Attard</name>
+    <name>Daniel Catania and Connor Attard</name>
     <url>http://maven.apache.org</url>
     
     <dependencies>
