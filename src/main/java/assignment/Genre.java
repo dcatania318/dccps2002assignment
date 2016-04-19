@@ -11,5 +11,16 @@ package assignment;
  */
 public class Genre
 {
+    private enum genre 
+    {
+        Fiction, Biography, Comedy, Drama, NonFiction, RealisticFiction, 
+        RomanceNovel, Satire, Tragedy, Tragicomedy, Horror, Other
+    }
     
+    private genre g;
+    
+    public void setGenre()
+    {
+        
+    }
 }
