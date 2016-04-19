@@ -6,9 +6,7 @@
 package assignment;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -16,22 +14,26 @@ import static org.junit.Assert.*;
  *
  * @author dcata
  */
-public class UserTest {
+public class UserTest 
+{
     
     User user;
     
     @Before
-    public void setUp() {
+    public void setUp()
+    {
         user = new User("83294M","Connor Attard","Marsaskala",21249200,79249200);
     }
     
     @After
-    public void tearDown() {
+    public void tearDown()
+    {
         user = null;
     }
 
     @Test
-    public void testIDno() {
+    public void testIDno()
+    {
         assertEquals("83294M",user.getIDno());
         String s = "368396M";
         user.setIDno(s);
@@ -39,7 +41,8 @@ public class UserTest {
     }
 
     @Test
-    public void testFullName() {
+    public void testFullName()
+    {
         assertEquals("Connor Attard",user.getFullName());
         String s = "Daniel Catania";
         user.setFullName(s);
@@ -47,7 +50,8 @@ public class UserTest {
     }
 
     @Test
-    public void testAddress() {
+    public void testAddress()
+    {
         assertEquals("Marsaskala",user.getAddress());
         String s = "Pembroke";
         user.setAddress(s);
@@ -55,7 +59,8 @@ public class UserTest {
     }
 
     @Test
-    public void testTelephoneNo() {
+    public void testTelephoneNo()
+    {
         assertEquals(21249200,user.getTelephoneNo());
         int i = 21212121;
         user.setTelephoneNo(i);

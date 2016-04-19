@@ -5,6 +5,8 @@
  */
 package assignment;
 
+import java.util.Date;
+
 /**
  *
  * @author dcata
@@ -17,8 +19,8 @@ public class Book
     private String genre;
     private int yearOfPublication;
     private int edition;
-    // user pointer
-    // date
+    User loanedTo;
+    Date dateLoanedOut;
     
     public Book(String isbn_in, String title_in, String author_in, String genre_in, int yearOfPublication_in, int edition_in)
     {
@@ -28,6 +30,8 @@ public class Book
         genre = genre_in;
         yearOfPublication = yearOfPublication_in;
         edition = edition_in;
+        loanedTo = null;
+        dateLoanedOut = null;
     }
     
     public void setIsbn(String isbn_in)
@@ -78,5 +82,24 @@ public class Book
     public int getEdition()
     {
         return edition;
+    }
+    
+    public void loan(User user, Date currentDate)
+    {
+        loanedTo = user;
+        dateLoanedOut = currentDate;
+    }
+    public void returned()
+    {
+        loanedTo = null;
+        dateLoanedOut = null;
+    }
+    public User getUserLoanedTo()
+    {
+        return loanedTo;
+    }
+    public Date getDateLoanedOut()
+    {
+        return dateLoanedOut;
     }
 }
