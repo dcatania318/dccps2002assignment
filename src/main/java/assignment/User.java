@@ -17,34 +17,34 @@ public class User
     private int iTelephoneNo;
     private int iMobileNo;
     
-    public User(String sIDno_in, String sFullName_in, String sAddress_in, int iTelephoneNo_in, int iMobileNo_in)
+    public User(String sIDno, String sFullName, String sAddress, int iTelephoneNo, int iMobileNo)
     {
-        sIDno = sIDno_in;
-        sFullName = sFullName_in;
-        sAddress = sAddress_in;
-        iTelephoneNo = iTelephoneNo_in;
-        iMobileNo = iMobileNo_in;
+        this.sIDno = sIDno;
+        this.sFullName = sFullName;
+        this.sAddress = sAddress;
+        this.iTelephoneNo = iTelephoneNo;
+        this.iMobileNo = iMobileNo;
     }
     
-    public void setIDno(String sIDno_in)
+    public void setIDno(String sIDno)
     {
-        sIDno = sIDno_in;
+        this.sIDno = sIDno;
     }
-    public void setFullName(String sFullName_in)
+    public void setFullName(String sFullName)
     {
-        sFullName = sFullName_in;
+        this.sFullName = sFullName;
     }
-    public void setAddress(String sAddress_in)
+    public void setAddress(String sAddress)
     {
-        sAddress = sAddress_in;
+        this.sAddress = sAddress;
     }
-    public void setTelephoneNo(int iTelephoneNo_in)
+    public void setTelephoneNo(int iTelephoneNo)
     {
-        iTelephoneNo = iTelephoneNo_in;
+        this.iTelephoneNo = iTelephoneNo;
     }
-    public void setMobileNo(int iMobileNo_in)
+    public void setMobileNo(int iMobileNo)
     {
-        iMobileNo = iMobileNo_in;
+        this.iMobileNo = iMobileNo;
     }
     
     public String getIDno()

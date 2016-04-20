@@ -19,44 +19,44 @@ public class Book
     private String genre;
     private int yearOfPublication;
     private int edition;
-    User loanedTo;
-    Date dateLoanedOut;
+    private User loanedTo; //Should be decoupled from individual book record IMO. Might cut down on memory usage.
+    private Date dateLoanedOut; //Ditto
     
-    public Book(String isbn_in, String title_in, String author_in, String genre_in, int yearOfPublication_in, int edition_in)
+    public Book(String isbn, String title, String author, String genre, int yearOfPublication, int edition)
     {
-        isbn = isbn_in;
-        title = title_in;
-        author = author_in;
-        genre = genre_in;
-        yearOfPublication = yearOfPublication_in;
-        edition = edition_in;
-        loanedTo = null;
-        dateLoanedOut = null;
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.yearOfPublication = yearOfPublication;
+        this.edition = edition;
+        this.loanedTo = null;
+        this.dateLoanedOut = null;
     }
     
-    public void setIsbn(String isbn_in)
+    public void setIsbn(String isbn)
     {
-        isbn = isbn_in;
+        this.isbn = isbn;
     }
-    public void setTitle(String title_in)
+    public void setTitle(String title)
     {
-        title = title_in;
+        this.title = title;
     }
-    public void setAuthor(String author_in)  
+    public void setAuthor(String author)  
     {
-        author = author_in;
+        this.author = author;
     }
-    public void setGenre(String genre_in)
+    public void setGenre(String genre)
     {
-        genre = genre_in;
+        this.genre = genre;
     }
-    public void setYearOfPublication(int yearOfPublication_in)
+    public void setYearOfPublication(int yearOfPublication)
     {
-        yearOfPublication = yearOfPublication_in;
+        this.yearOfPublication = yearOfPublication;
     }
-    public void setEdition(int edition_in)
+    public void setEdition(int edition)
     {
-        edition = edition_in;
+        this.edition = edition;
     }
     
     public String getIsbn()
