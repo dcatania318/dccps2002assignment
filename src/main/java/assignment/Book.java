@@ -7,22 +7,23 @@ public class Book
     private String isbn;
     private String title;
     private String author;
-    private String genre;
+    private Genre genre;
     private int yearOfPublication;
     private int edition;
-    private User loanedTo;
-    private Date dateLoanedOut;
+    private User loanedTo; //Should be decoupled from individual book record IMO. Might cut down on memory usage.
+    private Date dateLoanedOut; //Ditto
     
-    public Book(String isbn, String title, String author, String genre, int yearOfPublication, int edition)
+    public Book(String isbn, String title, String author, String genreName, int yearOfPublication, int edition)
     {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
-        this.genre = genre;
         this.yearOfPublication = yearOfPublication;
         this.edition = edition;
         this.loanedTo = null;
         this.dateLoanedOut = null;
+        
+        this.genre = Genre.createGenre(genreName);
     }
     
     public void setIsbn(String isbn)
@@ -37,7 +38,7 @@ public class Book
     {
         this.author = author;
     }
-    public void setGenre(String genre)
+    public void setGenre(Genre genre)
     {
         this.genre = genre;
     }
@@ -62,7 +63,7 @@ public class Book
     {
         return author;
     }
-    public String getGenre()
+    public Genre getGenre()
     {
         return genre;
     }

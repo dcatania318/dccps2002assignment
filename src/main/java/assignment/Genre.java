@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Genre
-{
+{   
     private static HashMap<String, Genre> handles;
     
     private ArrayList<Book> links;
@@ -21,36 +21,37 @@ public class Genre
     
     public static Genre createGenre(String genreName)
     {
-        if(handles == null)
+        if(handles == null) 
         {
             handles = new HashMap<String, Genre>();
         }
         
-        if(handles.containsKey(genreName) == false)
+        if(handles.containsKey(genreName) == false) 
         {
             handles.put(genreName, new Genre(genreName));
-            return handles.get(genreName);
         }
-        else
-        {
-            System.err.println("A genre of this kind has already been created.");
-            return null;
-        }
+        
+        return handles.get(genreName);
     }
     
-    public void addLink(Book book)
+    public void addLink(Book book) 
     {
         links.add(book);
         this.count++;
     }
     
-    public void removeLink(Book book)
+    public void removeLink(Book book) 
     {
         links.remove(book);
         count--;
     }
     
-    public void setDescription(String description)
+    public static Genre getGenreHandle(String genreName) 
+    {
+        return handles.get(genreName);
+    } 
+    
+    public void setDescription(String description) 
     {
         this.description = description;
     }
