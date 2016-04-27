@@ -1,14 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Book.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Daniel Catania and Connor Attard</a> &gt; <a href="index.source.html" class="el_package">assignment</a> &gt; <span class="el_source">Book.java</span></div><h1>Book.java</h1><pre class="source lang-java linenums">/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package assignment;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Book.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Daniel Catania and Connor Attard</a> &gt; <a href="index.source.html" class="el_package">assignment</a> &gt; <span class="el_source">Book.java</span></div><h1>Book.java</h1><pre class="source lang-java linenums">package assignment;
 
-/**
- *
- * @author dcata
- */
+import java.util.Date;
+
 public class Book
 {
     private String isbn;
@@ -17,67 +10,88 @@ public class Book
     private String genre;
     private int yearOfPublication;
     private int edition;
-    // user pointer
-    // date
+    private User loanedTo;
+    private Date dateLoanedOut;
     
-    public Book(String isbn_in, String title_in, String author_in, String genre_in, int yearOfPublication_in, int edition_in)
-<span class="nc" id="L24">    {</span>
-<span class="nc" id="L25">        isbn = isbn_in;</span>
-<span class="nc" id="L26">        title = title_in;</span>
-<span class="nc" id="L27">        author = author_in;</span>
-<span class="nc" id="L28">        genre = genre_in;</span>
-<span class="nc" id="L29">        yearOfPublication = yearOfPublication_in;</span>
-<span class="nc" id="L30">        edition = edition_in;</span>
-<span class="nc" id="L31">    }</span>
+    public Book(String isbn, String title, String author, String genre, int yearOfPublication, int edition)
+<span class="fc" id="L17">    {</span>
+<span class="fc" id="L18">        this.isbn = isbn;</span>
+<span class="fc" id="L19">        this.title = title;</span>
+<span class="fc" id="L20">        this.author = author;</span>
+<span class="fc" id="L21">        this.genre = genre;</span>
+<span class="fc" id="L22">        this.yearOfPublication = yearOfPublication;</span>
+<span class="fc" id="L23">        this.edition = edition;</span>
+<span class="fc" id="L24">        this.loanedTo = null;</span>
+<span class="fc" id="L25">        this.dateLoanedOut = null;</span>
+<span class="fc" id="L26">    }</span>
     
-    public void setIsbn(String isbn_in)
+    public void setIsbn(String isbn)
     {
-<span class="nc" id="L35">        isbn = isbn_in;</span>
-<span class="nc" id="L36">    }</span>
-    public void setTitle(String title_in)
+<span class="fc" id="L30">        this.isbn = isbn;</span>
+<span class="fc" id="L31">    }</span>
+    public void setTitle(String title)
     {
-<span class="nc" id="L39">        title = title_in;</span>
-<span class="nc" id="L40">    }</span>
-    public void setAuthor(String author_in)  
+<span class="fc" id="L34">        this.title = title;</span>
+<span class="fc" id="L35">    }</span>
+    public void setAuthor(String author)  
     {
-<span class="nc" id="L43">        author = author_in;</span>
-<span class="nc" id="L44">    }</span>
-    public void setGenre(String genre_in)
+<span class="fc" id="L38">        this.author = author;</span>
+<span class="fc" id="L39">    }</span>
+    public void setGenre(String genre)
     {
-<span class="nc" id="L47">        genre = genre_in;</span>
-<span class="nc" id="L48">    }</span>
-    public void setYearOfPublication(int yearOfPublication_in)
+<span class="fc" id="L42">        this.genre = genre;</span>
+<span class="fc" id="L43">    }</span>
+    public void setYearOfPublication(int yearOfPublication)
     {
-<span class="nc" id="L51">        yearOfPublication = yearOfPublication_in;</span>
-<span class="nc" id="L52">    }</span>
-    public void setEdition(int edition_in)
+<span class="fc" id="L46">        this.yearOfPublication = yearOfPublication;</span>
+<span class="fc" id="L47">    }</span>
+    public void setEdition(int edition)
     {
-<span class="nc" id="L55">        edition = edition_in;</span>
-<span class="nc" id="L56">    }</span>
+<span class="fc" id="L50">        this.edition = edition;</span>
+<span class="fc" id="L51">    }</span>
     
     public String getIsbn()
     {
-<span class="nc" id="L60">        return isbn;</span>
+<span class="fc" id="L55">        return isbn;</span>
     }
     public String getTitle()
     {
-<span class="nc" id="L64">        return title;</span>
+<span class="fc" id="L59">        return title;</span>
     }
     public String getAuthor()
     {
-<span class="nc" id="L68">        return author;</span>
+<span class="fc" id="L63">        return author;</span>
     }
     public String getGenre()
     {
-<span class="nc" id="L72">        return genre;</span>
+<span class="fc" id="L67">        return genre;</span>
     }
     public int getYearOfPublication()
     {
-<span class="nc" id="L76">        return yearOfPublication;</span>
+<span class="fc" id="L71">        return yearOfPublication;</span>
     }
     public int getEdition()
     {
-<span class="nc" id="L80">        return edition;</span>
+<span class="fc" id="L75">        return edition;</span>
+    }
+    
+    public void loan(User user, Date currentDate)
+    {
+<span class="fc" id="L80">        loanedTo = user;</span>
+<span class="fc" id="L81">        dateLoanedOut = currentDate;</span>
+<span class="fc" id="L82">    }</span>
+    public void returned()
+    {
+<span class="fc" id="L85">        loanedTo = null;</span>
+<span class="fc" id="L86">        dateLoanedOut = null;</span>
+<span class="fc" id="L87">    }</span>
+    public User getUserLoanedTo()
+    {
+<span class="fc" id="L90">        return loanedTo;</span>
+    }
+    public Date getDateLoanedOut()
+    {
+<span class="fc" id="L94">        return dateLoanedOut;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

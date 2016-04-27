@@ -1,4 +1,4 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-Daniel Catania and Connor Attard,assignment,Book,63,0,0,0,26,0,13,0,13,0
+Daniel Catania and Connor Attard,assignment,Book,0,89,0,0,0,36,0,17,0,17
 Daniel Catania and Connor Attard,assignment,User,0,53,0,0,0,22,0,11,0,11
-Daniel Catania and Connor Attard,assignment,Genre,3,0,0,0,1,0,1,0,1,0
+Daniel Catania and Connor Attard,assignment,Genre,70,0,4,0,20,0,7,0,5,0

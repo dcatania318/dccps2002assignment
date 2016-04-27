@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package assignment;
 
 import java.util.Date;
 
-/**
- *
- * @author dcata
- */
 public class Book
 {
     private String isbn;
@@ -19,8 +10,8 @@ public class Book
     private String genre;
     private int yearOfPublication;
     private int edition;
-    private User loanedTo; //Should be decoupled from individual book record IMO. Might cut down on memory usage.
-    private Date dateLoanedOut; //Ditto
+    private User loanedTo;
+    private Date dateLoanedOut;
     
     public Book(String isbn, String title, String author, String genre, int yearOfPublication, int edition)
     {
