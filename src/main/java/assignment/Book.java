@@ -38,9 +38,9 @@ public class Book
     {
         this.author = author;
     }
-    public void setGenre(Genre genre)
+    public void setGenre(String genre)
     {
-        this.genre = genre;
+        this.genre = Genre.createGenre(genre);
     }
     public void setYearOfPublication(int yearOfPublication)
     {
@@ -63,7 +63,11 @@ public class Book
     {
         return author;
     }
-    public Genre getGenre()
+    public String getGenre()
+    {
+        return genre.getGenreName();
+    }
+    public Genre getGenreObject()
     {
         return genre;
     }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Genre
-{
+{   
     private static HashMap&lt;String, Genre&gt; handles;
     
     private ArrayList&lt;Book&gt; links;
@@ -13,46 +13,68 @@ public class Genre
     private int count;
     
     private Genre(String genreName)
-<span class="nc" id="L16">    {</span>
-<span class="nc" id="L17">        this.genreName = genreName;</span>
-<span class="nc" id="L18">        this.links = new ArrayList&lt;Book&gt;();</span>
-<span class="nc" id="L19">        this.count = 0;</span>
-<span class="nc" id="L20">    }</span>
+<span class="fc" id="L16">    {</span>
+<span class="fc" id="L17">        this.genreName = genreName;</span>
+<span class="fc" id="L18">        this.links = new ArrayList&lt;Book&gt;();</span>
+<span class="fc" id="L19">        this.count = 0;</span>
+<span class="fc" id="L20">        this.description = null;</span>
+<span class="fc" id="L21">    }</span>
     
     public static Genre createGenre(String genreName)
     {
-<span class="nc bnc" id="L24" title="All 2 branches missed.">        if(handles == null)</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        if(handles == null) </span>
         {
-<span class="nc" id="L26">            handles = new HashMap&lt;String, Genre&gt;();</span>
+<span class="fc" id="L27">            handles = new HashMap&lt;String, Genre&gt;();</span>
         }
         
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        if(handles.containsKey(genreName) == false)</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        if(handles.containsKey(genreName) == false) </span>
         {
-<span class="nc" id="L31">            handles.put(genreName, new Genre(genreName));</span>
-<span class="nc" id="L32">            return handles.get(genreName);</span>
+<span class="fc" id="L32">            handles.put(genreName, new Genre(genreName));</span>
         }
-        else
-        {
-<span class="nc" id="L36">            System.err.println(&quot;A genre of this kind has already been created.&quot;);</span>
-<span class="nc" id="L37">            return null;</span>
-        }
+        
+<span class="fc" id="L35">        return handles.get(genreName);</span>
     }
     
-    public void addLink(Book book)
+    public void addLink(Book book) 
     {
-<span class="nc" id="L43">        links.add(book);</span>
-<span class="nc" id="L44">        this.count++;</span>
-<span class="nc" id="L45">    }</span>
+<span class="fc" id="L40">        links.add(book);</span>
+<span class="fc" id="L41">        this.count++;</span>
+<span class="fc" id="L42">    }</span>
     
-    public void removeLink(Book book)
+    public void removeLink(Book book) 
     {
-<span class="nc" id="L49">        links.remove(book);</span>
-<span class="nc" id="L50">        count--;</span>
-<span class="nc" id="L51">    }</span>
+<span class="fc" id="L46">        links.remove(book);</span>
+<span class="fc" id="L47">        this.count--;</span>
+<span class="fc" id="L48">    }</span>
     
-    public void setDescription(String description)
+    public static Genre getGenreHandle(String genreName) 
     {
-<span class="nc" id="L55">        this.description = description;</span>
-<span class="nc" id="L56">    }</span>
+<span class="fc" id="L52">        return handles.get(genreName);</span>
+    } 
+    
+    public void setDescription(String description) 
+    {
+<span class="fc" id="L57">        this.description = description;</span>
+<span class="fc" id="L58">    }</span>
+    
+    public String getDescription()
+    {
+<span class="fc" id="L62">        return this.description;</span>
+    }
+    
+    public String getGenreName()
+    {
+<span class="fc" id="L67">        return this.genreName;</span>
+    }
+    
+    public boolean containsBook(Book book)
+    {
+<span class="fc" id="L72">        return links.contains(book);</span>
+    }
+    
+    public int getCount()
+    {
+<span class="fc" id="L77">        return this.count;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

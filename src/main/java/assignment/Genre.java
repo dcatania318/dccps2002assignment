@@ -17,6 +17,7 @@ public class Genre
         this.genreName = genreName;
         this.links = new ArrayList<Book>();
         this.count = 0;
+        this.description = null;
     }
     
     public static Genre createGenre(String genreName)
@@ -43,7 +44,7 @@ public class Genre
     public void removeLink(Book book) 
     {
         links.remove(book);
-        count--;
+        this.count--;
     }
     
     public static Genre getGenreHandle(String genreName) 
@@ -54,5 +55,25 @@ public class Genre
     public void setDescription(String description) 
     {
         this.description = description;
+    }
+    
+    public String getDescription()
+    {
+        return this.description;
+    }
+    
+    public String getGenreName()
+    {
+        return this.genreName;
+    }
+    
+    public boolean containsBook(Book book)
+    {
+        return links.contains(book);
+    }
+    
+    public int getCount()
+    {
+        return this.count;
     }
 }

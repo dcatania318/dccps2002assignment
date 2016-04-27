@@ -8,67 +8,55 @@ import static org.junit.Assert.*;
 public class GenreTest 
 {
     Genre g;
+    Book b;
     
     @Before
     public void setUp()
     {
         g = null;
+        b = new Book("9780132350884","Clean Code : A Handbook of Agile Software Craftsmanship",
+                        "Robert C. Martin","Computing",2009,1);
     }
     
     @After
     public void tearDown()
     {
         g = null;
+        b = null;
     }
 
     @Test
-    public void testCreateGenre() {
-        System.out.println("createGenre");
-        String genreName = "";
-        Genre expResult = null;
-        Genre result = Genre.createGenre(genreName);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testCreateGenre()
+    {
+        String genre = "Horror";
+        assertEquals(Genre.getGenreHandle(genre),null);
+        Genre test = Genre.createGenre(genre);
+        assertEquals(Genre.getGenreHandle(genre),test);        
     }
 
-    /**
-     * Test of addLink method, of class Genre.
-     */
     @Test
-    public void testAddLink() {
-        System.out.println("addLink");
-        Book book = null;
-        Genre instance = null;
-        instance.addLink(book);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testLinksAndContainsAndCount()
+    {
+        Genre test = b.getGenreObject();
+        assertEquals(test.containsBook(b),false);
+        assertEquals(test.getCount(),0);
+        test.addLink(b);
+        assertEquals(test.containsBook(b),true);
+        assertEquals(test.getCount(),1);
+        test.removeLink(b);
+        assertEquals(test.containsBook(b),false);
+        assertEquals(test.getCount(),0);        
     }
 
-    /**
-     * Test of removeLink method, of class Genre.
-     */
     @Test
-    public void testRemoveLink() {
-        System.out.println("removeLink");
-        Book book = null;
-        Genre instance = null;
-        instance.removeLink(book);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testDescription() 
+    {
+        Genre test = Genre.createGenre("Computing");
+        assertEquals(test.getDescription(),null);
+        String d = "Computing is any goal-oriented activity requiring, "
+                + "benefiting from, or creating a mathematical sequence of "
+                + "steps known as an algorithm";
+        test.setDescription(d);
+        assertEquals(test.getDescription(),d);
     }
-
-    /**
-     * Test of setDescription method, of class Genre.
-     */
-    @Test
-    public void testSetDescription() {
-        System.out.println("setDescription");
-        String description = "";
-        Genre instance = null;
-        instance.setDescription(description);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }
