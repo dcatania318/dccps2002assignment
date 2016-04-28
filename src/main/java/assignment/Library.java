@@ -38,8 +38,21 @@ public class Library {
         database.put(user.getID(), user);
     }
     
-    public void removeUser(String ID) {
-        database.remove(ID);
+    public void removeUser(User user) {
+        database.remove(user.getID());
+    }
+    
+    public void loanBookTo(Book book, User user) {
+        if(book.getUserLoanedTo() != null) {
+            System.err.println("[ERR] This book is already loaned out.");
+            return;
+        }
+        
+        book.setLoanedTo(user);
+    }
+    
+    public void returnBook(Book book) {
+        book.setLoanedTo(null);
     }
     
     public User[] getAllUsers() {
