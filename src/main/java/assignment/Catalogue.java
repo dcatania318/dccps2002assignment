@@ -31,7 +31,7 @@ public class Catalogue
     }
     
     public void removeBook(Book book) {
-        if(catalogue.remove(book.getIsbn(), book) == false) {
+        if(catalogue.remove(book.getIsbn()) == null) {
             System.err.println("[ERR] Book not found.");
         }
     }
