@@ -11,6 +11,7 @@ package assignment;
  */
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class Library {
     
@@ -40,5 +41,9 @@ public class Library {
     
     public void removeUser(String ID) {
         database.remove(ID);
+    }
+    
+    public User[] getAllUsers() {
+        return (User[])database.values().toArray();
     }
 }

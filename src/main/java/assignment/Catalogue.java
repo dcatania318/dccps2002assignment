@@ -36,7 +36,7 @@ public class Catalogue
         }
     }
     
-    public HashMap getAllBooks() {
-        return catalogue;
+    public Book[] getAllBooks() {
+        return (Book[])catalogue.values().toArray();
     }
 }
