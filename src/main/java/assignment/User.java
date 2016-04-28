@@ -1,61 +1,58 @@
 package assignment;
 
-public class User
-{
-    private String sIDno;
-    private String sFullName;
-    private String sAddress;
-    private int iTelephoneNo;
-    private int iMobileNo;
+public class User {
     
-    public User(String sIDno, String sFullName, String sAddress, int iTelephoneNo, int iMobileNo)
-    {
-        this.sIDno = sIDno;
-        this.sFullName = sFullName;
-        this.sAddress = sAddress;
-        this.iTelephoneNo = iTelephoneNo;
-        this.iMobileNo = iMobileNo;
-    }
+    private String ID;
+    private String fullName;
+    private String address;
+    private int telephoneNo;
+    private int mobileNo;
     
-    public void setIDno(String sIDno)
-    {
-        this.sIDno = sIDno;
-    }
-    public void setFullName(String sFullName)
-    {
-        this.sFullName = sFullName;
-    }
-    public void setAddress(String sAddress)
-    {
-        this.sAddress = sAddress;
-    }
-    public void setTelephoneNo(int iTelephoneNo)
-    {
-        this.iTelephoneNo = iTelephoneNo;
-    }
-    public void setMobileNo(int iMobileNo)
-    {
-        this.iMobileNo = iMobileNo;
+    public User(String sIDno, String sFullName, String sAddress, int iTelephoneNo, int iMobileNo) {
+        this.ID = ID;
+        this.fullName = sFullName;
+        this.address = sAddress;
+        this.telephoneNo = iTelephoneNo;
+        this.mobileNo = iMobileNo;
     }
     
-    public String getIDno()
-    {
-        return sIDno;
+    public void setIDno(String ID) {
+        this.ID = ID;
     }
-    public String getFullName()
-    {
-        return sFullName;
+    
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
-    public String getAddress()
-    {
-        return sAddress;
+    
+    public void setAddress(String address) {
+        this.address = address;
     }
-    public int getTelephoneNo()
-    {
-        return iTelephoneNo;
+    
+    public void setTelephoneNo(int telephoneNo) {
+        this.telephoneNo = telephoneNo;
     }
-    public int getMobileNo()
-    {
-        return iMobileNo;
+    
+    public void setMobileNo(int mobileNo) {
+        this.mobileNo = mobileNo;
+    }
+    
+    public String getID() {
+        return ID;
+    }
+    
+    public String getFullName() {
+        return fullName;
+    }
+    
+    public String getAddress() {
+        return address;
+    }
+    
+    public int getTelephoneNo() {
+        return telephoneNo;
+    }
+    
+    public int getMobileNo() {
+        return mobileNo;
     }
 }

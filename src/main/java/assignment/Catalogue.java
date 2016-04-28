@@ -6,35 +6,37 @@ public class Catalogue
 {
     
     private static Catalogue instance = null;
-    private static HashMap<String, Book> catalogue = null;
+    private HashMap<String, Book> catalogue = null;
     
-    private Catalogue()
-    {
+    private Catalogue() {
         catalogue = new HashMap<String, Book>();
     }
     
-    public Catalogue createCatalogue()
-    {
-        if(instance == null)
-        {
+    public static Catalogue getInstance() {
+        if(instance == null) {
             instance = new Catalogue();
-        }
-        else
-        {
-            System.err.println("[ERR] A Catalogue instance is already running.");
         }
         
         return instance;
     }
     
-    public void addBook(Book book)
-    {
-        if(catalogue.get(book.getIsbn()) != null)
-        {
+    public void addBook(Book book) {
+        if(catalogue.containsKey(book.getIsbn()) == true) {
             System.err.println("[ERR] Duplicate catalogue entries are not allowed.");
             return;
         }
         
         catalogue.put(book.getIsbn(), book);
-    }   
+        book.getGenreObject().addLink(book);
+    }
+    
+    public void removeBook(Book book) {
+        if(catalogue.remove(book.getIsbn(), book) == false) {
+            System.err.println("[ERR] Book not found.");
+        }
+    }
+    
+    public HashMap getAllBooks() {
+        return catalogue;
+    }
 }

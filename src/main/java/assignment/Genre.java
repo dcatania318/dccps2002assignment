@@ -17,7 +17,7 @@ public class Genre
         this.genreName = genreName;
         this.links = new ArrayList<Book>();
         this.count = 0;
-        this.description = null;
+        this.description = "";
     }
     
     public static Genre createGenre(String genreName)
