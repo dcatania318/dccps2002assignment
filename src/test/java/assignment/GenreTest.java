@@ -52,7 +52,7 @@ public class GenreTest
     public void testDescription() 
     {
         Genre test = Genre.createGenre("Computing");
-        assertEquals(test.getDescription(),null);
+        assertEquals(test.getDescription(),"");
         String d = "Computing is any goal-oriented activity requiring, "
                 + "benefiting from, or creating a mathematical sequence of "
                 + "steps known as an algorithm";
