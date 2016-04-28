@@ -24,10 +24,10 @@ public class UserTest
     @Test
     public void testIDno()
     {
-        assertEquals("83294M",user.getIDno());
+        assertEquals("83294M",user.getID());
         String s = "368396M";
-        user.setIDno(s);
-        assertEquals(s,user.getIDno());
+        user.setID(s);
+        assertEquals(s,user.getID());
     }
 
     @Test
@@ -65,5 +65,4 @@ public class UserTest
         user.setMobileNo(i);
         assertEquals(i,user.getMobileNo());
     }
-    
 }

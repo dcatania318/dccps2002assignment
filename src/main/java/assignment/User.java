@@ -8,15 +8,15 @@ public class User {
     private int telephoneNo;
     private int mobileNo;
     
-    public User(String sIDno, String sFullName, String sAddress, int iTelephoneNo, int iMobileNo) {
+    public User(String ID, String fullName, String address, int telephoneNo, int mobileNo) {
         this.ID = ID;
-        this.fullName = sFullName;
-        this.address = sAddress;
-        this.telephoneNo = iTelephoneNo;
-        this.mobileNo = iMobileNo;
+        this.fullName = fullName;
+        this.address = address;
+        this.telephoneNo = telephoneNo;
+        this.mobileNo = mobileNo;
     }
     
-    public void setIDno(String ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
     
