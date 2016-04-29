@@ -55,5 +55,20 @@ public class Catalogue
         }
         
         return (Book[])result.toArray();
-    }  
+    }
+    
+    public Book[] searchByYearOfPublication(int year) {
+        Iterator i = catalogue.values().iterator();
+        ArrayList<Book> result = new ArrayList<Book>();
+        Book search;
+        
+        while(i.hasNext()) {
+            search = (Book)i.next();
+            if(search.getYearOfPublication() == year) {
+                result.add(search);
+            }
+        }
+        
+        return (Book[])result.toArray();
+    }
 }
