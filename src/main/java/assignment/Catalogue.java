@@ -1,6 +1,8 @@
 package assignment;
 
 import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Iterator;
         
 public class Catalogue
 {
@@ -39,4 +41,19 @@ public class Catalogue
     public Book[] getAllBooks() {
         return (Book[])catalogue.values().toArray();
     }
+    
+    public Book[] searchByTitle(String title) {
+        Iterator i = catalogue.values().iterator();
+        ArrayList<Book> result = new ArrayList<Book>();
+        Book search;
+        
+        while(i.hasNext()) {
+            search = (Book)i.next();
+            if(search.getTitle().toUpperCase().equals(title)) {
+                result.add(search);
+            }
+        }
+        
+        return (Book[])result.toArray();
+    }  
 }
