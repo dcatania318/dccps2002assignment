@@ -44,10 +44,11 @@ public class Library {
     
     public void loanBookTo(Book book, User user) {
         if(book.getUserLoanedTo() != null) {
-            System.err.println("[ERR] This book is already loaned out.");
+            System.out.println("This book has already been loaned.");
             return;
         }
         
+        user.loan(book);
         book.setLoanedTo(user);
     }
     

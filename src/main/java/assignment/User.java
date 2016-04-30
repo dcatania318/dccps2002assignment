@@ -1,6 +1,6 @@
 package assignment;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class User {
     
@@ -10,12 +10,32 @@ public class User {
     private int telephoneNo;
     private int mobileNo;
     
+    private LinkedList<Book> loans;
+    
     public User(String ID, String fullName, String address, int telephoneNo, int mobileNo) {
         this.ID = ID;
         this.fullName = fullName;
         this.address = address;
         this.telephoneNo = telephoneNo;
         this.mobileNo = mobileNo;
+        
+        loans = new LinkedList<Book>();
+    }
+    
+    public void loan(Book book) {
+        if(loans.size() == 3) {
+            System.out.println("You cannot check out more than three books.");
+            return;
+        }
+        
+        for(Book search : loans) {
+            if(search.isOverdue()) {
+                System.out.println("Please return any overdue books before checking out another.");
+                return;
+            }
+        }
+        
+        loans.add(book);
     }
     
     public void setID(String ID) {

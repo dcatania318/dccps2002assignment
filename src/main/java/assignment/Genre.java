@@ -1,7 +1,6 @@
 package assignment;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class Genre
 {   
@@ -77,5 +76,9 @@ public class Genre
     public int getCount()
     {
         return this.count;
+    }
+    
+    public Book[] getBooks() {
+        return (Book[])links.toArray();
     }
 }

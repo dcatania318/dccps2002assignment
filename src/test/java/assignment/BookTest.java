@@ -1,6 +1,6 @@
 package assignment;
 
-import java.util.Date;
+import java.time.LocalDate;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -86,10 +86,9 @@ public class BookTest
     public void testLoan()
     {
         User user = new User("83294M","Connor Attard","Marsaskala",21249200,79249200);
-        Date date = new Date();
-        book.loan(user, date);
+        book.setLoanedTo(user);
         assertEquals(user,book.getUserLoanedTo());
-        assertEquals(date,book.getDateLoanedOut());
+        assertEquals(LocalDate.now(),book.getDateLoanedOut());
     }
 
     @Test

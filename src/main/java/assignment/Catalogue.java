@@ -71,4 +71,8 @@ public class Catalogue
         
         return (Book[])result.toArray();
     }
+    
+    public Book[] searchByGenre(Genre genre) {
+        return genre.getBooks();
+    }
 }
