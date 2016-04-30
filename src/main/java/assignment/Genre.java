@@ -1,18 +1,18 @@
 package assignment;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 
 public class Genre
 {   
-    private static HashMap<String, Genre> handles;
+    //private static HashSet<String> register = null;
     
     private ArrayList<Book> links;
     private String genreName;
     private String description;
     private int count;
     
-    private Genre(String genreName)
+    public Genre(String genreName)
     {
         this.genreName = genreName;
         this.links = new ArrayList<Book>();
@@ -20,20 +20,23 @@ public class Genre
         this.description = "";
     }
     
+    /*
     public static Genre createGenre(String genreName)
     {
-        if(handles == null) 
+        if(register == null) 
         {
-            handles = new HashMap<String, Genre>();
+            register = new HashSet<String>();
         }
         
-        if(handles.containsKey(genreName) == false) 
+        if(register.contains(genreName) == true)
         {
-            handles.put(genreName, new Genre(genreName));
+            return null;
         }
         
-        return handles.get(genreName);
+        register.add(genreName);
+        return new Genre(genreName);
     }
+    */
     
     public void addLink(Book book) 
     {
@@ -47,10 +50,9 @@ public class Genre
         this.count--;
     }
     
-    public static Genre getGenreHandle(String genreName) 
-    {
-        return handles.get(genreName);
-    } 
+    public void setGenreName(String genreName) {
+        this.genreName = genreName;
+    }
     
     public void setDescription(String description) 
     {

@@ -7,56 +7,55 @@ import static org.junit.Assert.*;
 
 public class GenreTest 
 {
-    Genre g;
-    Book b;
+    Genre testGenre;
+    Book testBook;
     
     @Before
     public void setUp()
     {
-        g = null;
-        b = new Book("9780132350884","Clean Code : A Handbook of Agile Software Craftsmanship",
-                        "Robert C. Martin","Computing",2009,1);
+        testGenre = new Genre("Computing");
+        testBook = new Book("9780132350884","Clean Code : A Handbook of Agile Software Craftsmanship", "Robert C. Martin",testGenre,2009,1);
     }
     
     @After
     public void tearDown()
     {
-        g = null;
-        b = null;
+        testGenre = null;
+        testBook = null;
+        Runtime.getRuntime().gc();
     }
 
+    /*
     @Test
     public void testCreateGenre()
     {
-        String genre = "Horror";
-        assertEquals(Genre.getGenreHandle(genre),null);
-        Genre test = Genre.createGenre(genre);
-        assertEquals(Genre.getGenreHandle(genre),test);        
+        assertNotNull(Genre.createGenre("Horror"));
+        assertNull(Genre.createGenre("Horror"));
     }
+*/
 
     @Test
     public void testLinksAndContainsAndCount()
     {
-        Genre test = b.getGenreObject();
-        assertEquals(test.containsBook(b),false);
+        Genre test = testBook.getGenreObject();
+        assertEquals(test.containsBook(testBook),false);
         assertEquals(test.getCount(),0);
-        test.addLink(b);
-        assertEquals(test.containsBook(b),true);
+        test.addLink(testBook);
+        assertEquals(test.containsBook(testBook),true);
         assertEquals(test.getCount(),1);
-        test.removeLink(b);
-        assertEquals(test.containsBook(b),false);
+        test.removeLink(testBook);
+        assertEquals(test.containsBook(testBook),false);
         assertEquals(test.getCount(),0);        
     }
 
     @Test
     public void testDescription() 
-    {
-        Genre test = Genre.createGenre("Computing");
-        assertEquals(test.getDescription(),"");
+    {   
+        assertEquals(testGenre.getDescription(),"");
         String d = "Computing is any goal-oriented activity requiring, "
                 + "benefiting from, or creating a mathematical sequence of "
                 + "steps known as an algorithm";
-        test.setDescription(d);
-        assertEquals(test.getDescription(),d);
+        testGenre.setDescription(d);
+        assertEquals(testGenre.getDescription(),d);
     }
 }

@@ -8,19 +8,22 @@ import static org.junit.Assert.*;
 
 public class BookTest
 {
+    Genre genre;
     Book book;
     
     @Before
     public void setUp()
     {
-        book = new Book("9780132350884","Clean Code : A Handbook of Agile Software Craftsmanship",
-                        "Robert C. Martin","Computing",2009,1);
+        genre = new Genre("Software");
+        book = new Book("9780132350884","Clean Code : A Handbook of Agile Software Craftsmanship","Robert C. Martin",genre,2009,1);
     }
     
     @After
     public void tearDown()
     {
         book = null;
+        genre = null;
+        Runtime.getRuntime().gc();
     }
 
     @Test
@@ -51,11 +54,14 @@ public class BookTest
     }
 
     @Test
-    public void testGenre() {
-        assertEquals("Computing",book.getGenre());
-        String str = "Motor Cars";
-        book.setGenre(str);
-        assertEquals(str,book.getGenre());
+    public void testSetGenre() {
+        assertEquals("Software",book.getGenre());
+        
+        Genre newGenre = new Genre("ICT");
+        book.setGenre(newGenre);
+        assertEquals("ICT",book.getGenre());
+        assertFalse(genre.containsBook(book));
+        assertTrue(newGenre.containsBook(book));
     }
 
     @Test
@@ -92,6 +98,5 @@ public class BookTest
         book.returned();
         assertEquals(null,book.getUserLoanedTo());
         assertEquals(null,book.getDateLoanedOut());
-    }
-    
+    }  
 }
