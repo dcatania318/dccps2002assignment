@@ -59,4 +59,8 @@ public class Library {
     public User[] getAllUsers() {
         return (User[])database.values().toArray();
     }
+    
+    public User searchByID(String ID) {
+       return database.get(ID);
+    }
 }

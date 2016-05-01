@@ -42,6 +42,10 @@ public class Catalogue
         return (Book[])catalogue.values().toArray();
     }
     
+    public Book searchByISBN(String isbn) {
+        return catalogue.get(isbn);
+    }
+    
     public Book[] searchByTitle(String title) {
         Iterator i = catalogue.values().iterator();
         ArrayList<Book> result = new ArrayList<Book>();
