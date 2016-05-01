@@ -1,7 +1,7 @@
 package assignment;
 
-import java.time.temporal.ChronoUnit;
-import java.time.LocalDate;
+import java.util.Date;
+import java.util.Calendar;
 
 public class Book
 {
@@ -12,8 +12,8 @@ public class Book
     private int yearOfPublication;
     private int edition;
     private User loanedTo;
-    private LocalDate dateLoanedOut;
-    private LocalDate dueDate;
+    private Date dateLoanedOut;
+    private Date dueDate;
     
     public Book(String isbn, String title, String author, Genre genre, int yearOfPublication, int edition)
     {
@@ -29,9 +29,9 @@ public class Book
     }
     
     public boolean isOverdue() {
-        return !(loanedTo == null || dueDate.isAfter(LocalDate.now()));
+        return !(loanedTo == null || dueDate.after(Calendar.getInstance().getTime()));
     }
-    
+   
     public void setIsbn(String isbn)
     {
         this.isbn = isbn;
@@ -56,8 +56,8 @@ public class Book
     
     public void setLoanedTo(User user) {
         this.loanedTo = user;
-        this.dateLoanedOut = LocalDate.now();
-        this.dueDate = dateLoanedOut.plus(4, ChronoUnit.WEEKS);
+        this.dateLoanedOut = Calendar.getInstance().getTime();
+        this.dueDate = new Date(2419200000l+dateLoanedOut.getTime());
     }
     
     public void setYearOfPublication(int yearOfPublication)
@@ -117,7 +117,7 @@ public class Book
         return loanedTo;
     }
     
-    public LocalDate getDateLoanedOut()
+    public Date getDateLoanedOut()
     {
         return dateLoanedOut;
     }
