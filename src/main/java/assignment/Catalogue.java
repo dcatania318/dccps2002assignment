@@ -39,7 +39,7 @@ public class Catalogue
     }
     
     public Book[] getAllBooks() {
-        return (Book[])catalogue.values().toArray();
+        return catalogue.values().toArray(new Book[catalogue.size()]);
     }
     
     public Book searchByISBN(String isbn) {
@@ -58,7 +58,7 @@ public class Catalogue
             }
         }
         
-        return (Book[])result.toArray();
+        return result.toArray(new Book[result.size()]);
     }
     
     public Book[] searchByYearOfPublication(int year) {
@@ -73,10 +73,10 @@ public class Catalogue
             }
         }
         
-        return (Book[])result.toArray();
+        return result.toArray(new Book[result.size()]);
     }
     
     public Book[] searchByGenre(Genre genre) {
-        return genre.getBooks();
+        return (Book[])genre.getBooks();
     }
 }

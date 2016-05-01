@@ -79,6 +79,6 @@ public class Genre
     }
     
     public Book[] getBooks() {
-        return (Book[])links.toArray();
+        return links.toArray(new Book[links.size()]);
     }
 }
