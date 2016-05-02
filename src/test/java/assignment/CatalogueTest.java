@@ -48,24 +48,24 @@ public class CatalogueTest {
         catalogue.addBook(book1);
         catalogue.addBook(book2);
         catalogue.addBook(book3);
+        catalogue.addBook(book4);
         
         assertNotNull(catalogue.searchByISBN("978443"));
         assertNotNull(catalogue.searchByISBN("944322"));
         assertNotNull(catalogue.searchByISBN("944323"));
+        assertNotNull(catalogue.searchByISBN("665322"));
     }
     
     @Test 
     public void getAllBooksTest() {
-        Book[] books = catalogue.getAllBooks();
-        
-        assertEquals(3,books.length);
+        assertEquals(4,catalogue.getAllBooks().length);
     }
     
     @Test
     public void duplicateAddTest() {
         catalogue.addBook(book1);
         
-        assertEquals(3,catalogue.getAllBooks().length);
+        assertEquals(4,catalogue.getAllBooks().length);
     }
     
     @Test
@@ -93,7 +93,7 @@ public class CatalogueTest {
         Book[] phiSearch = catalogue.searchByGenre(phiGenre);
         
         assertEquals(3,fantasySearch.length);
-        assertEquals(1,phiSearch.length);
+        assertEquals("Ayn Rand",phiSearch[0].getAuthor());
         
         for(Book book : fantasySearch) {
             assertEquals("J.R.R. Tolkien",book.getAuthor());

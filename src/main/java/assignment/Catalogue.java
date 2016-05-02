@@ -1,6 +1,8 @@
 package assignment;
 
-import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.Map;
+import java.util.Collection;
 import java.util.ArrayList;
 import java.util.Iterator;
         
@@ -8,10 +10,10 @@ public class Catalogue
 {
     
     private static Catalogue instance = null;
-    private HashMap<String, Book> catalogue = null;
+    private Map<String, Book> catalogue = null;
     
     private Catalogue() {
-        catalogue = new HashMap<String, Book>();
+        catalogue = new TreeMap<String, Book>();
     }
     
     public static Catalogue getInstance() {
@@ -23,7 +25,7 @@ public class Catalogue
     }
     
     public void addBook(Book book) {
-        if(catalogue.containsKey(book.getIsbn()) == true) {
+        if(catalogue.containsKey(book.getIsbn())) {
             System.err.println("[ERR] Duplicate catalogue entries are not allowed.");
             return;
         }
@@ -47,14 +49,12 @@ public class Catalogue
     }
     
     public Book[] searchByTitle(String title) {
-        Iterator i = catalogue.values().iterator();
+        Collection<Book> values = catalogue.values();
         ArrayList<Book> result = new ArrayList<Book>();
-        Book search;
         
-        while(i.hasNext()) {
-            search = (Book)i.next();
-            if(search.getTitle().toUpperCase().equals(title)) {
-                result.add(search);
+        for(Book ptr : values) {
+            if(ptr.getTitle().equals(title)) {
+                result.add(ptr);
             }
         }
         
@@ -62,14 +62,12 @@ public class Catalogue
     }
     
     public Book[] searchByYearOfPublication(int year) {
-        Iterator i = catalogue.values().iterator();
+        Collection<Book> values = catalogue.values();
         ArrayList<Book> result = new ArrayList<Book>();
-        Book search;
         
-        while(i.hasNext()) {
-            search = (Book)i.next();
-            if(search.getYearOfPublication() == year) {
-                result.add(search);
+        for(Book ptr : values) {
+            if(ptr.getYearOfPublication() == year) {
+                result.add(ptr);
             }
         }
         
@@ -77,6 +75,6 @@ public class Catalogue
     }
     
     public Book[] searchByGenre(Genre genre) {
-        return (Book[])genre.getBooks();
+        return genre.getBooks();
     }
 }
