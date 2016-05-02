@@ -31,7 +31,6 @@ public class Library {
     
     public static void dropLibrary() {
         instance = null;
-        System.gc();
     }
     
     public void addUser(User user) {
@@ -54,7 +53,6 @@ public class Library {
         }
         
         user.loan(book);
-        book.setLoanedTo(user);
     }
     
     public void returnBook(Book book) {

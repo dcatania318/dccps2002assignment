@@ -25,7 +25,6 @@ public class Catalogue
     
     public static void dropCatalogue() {
         instance = null;
-        System.gc();
     }
     
     public void addBook(Book book) {

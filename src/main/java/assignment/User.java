@@ -36,6 +36,11 @@ public class User {
         }
         
         loans.add(book);
+        book.setLoanedTo(this);
+    }
+    
+    public void unloan(Book book) {
+        loans.remove(book);
     }
     
     public void setID(String ID) {
@@ -76,5 +81,9 @@ public class User {
     
     public int getMobileNo() {
         return mobileNo;
+    }
+    
+    public Book[] getLoanedBooks() {
+        return loans.toArray(new Book[loans.size()]);
     }
 }
