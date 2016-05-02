@@ -10,30 +10,35 @@ package assignment;
  * @author Connor
  */
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class CatalogueTest {
     
-    Book book1, book2, book3, book4;
-    Genre fantasyGenre, phiGenre;
-    Catalogue catalogue;
+    static Book book1, book2, book3, book4;
+    static Genre fantasyGenre, phiGenre;
+    static Catalogue catalogue;
     
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void setUp() {
         fantasyGenre = new Genre("Fantasy");
         phiGenre = new Genre("Philosophy");
         book1 = new Book("978443", "The Hobbit", "J.R.R. Tolkien", fantasyGenre, 1937, 2);
         book2 = new Book("944322", "The Lord of the Rings", "J.R.R. Tolkien", fantasyGenre, 1954, 1);
         book3 = new Book("944323", "The Lord of the Rings", "J.R.R. Tolkien", fantasyGenre, 1955, 2);
         book4 = new Book("665322", "Atlas Shrugged", "Ayn Rand", phiGenre, 1957, 1);
+        
         catalogue = Catalogue.getInstance();
+        catalogue.addBook(book1);
+        catalogue.addBook(book2);
+        catalogue.addBook(book3);
+        catalogue.addBook(book4);
     }
     
-    @After
-    public void tearDown() {
+    @AfterClass
+    public static void tearDown() {
         fantasyGenre = null;
         phiGenre = null;
         book1 = null;
@@ -45,11 +50,6 @@ public class CatalogueTest {
     
     @Test
     public void addAndSearchTest() {
-        catalogue.addBook(book1);
-        catalogue.addBook(book2);
-        catalogue.addBook(book3);
-        catalogue.addBook(book4);
-        
         assertNotNull(catalogue.searchByISBN("978443"));
         assertNotNull(catalogue.searchByISBN("944322"));
         assertNotNull(catalogue.searchByISBN("944323"));
