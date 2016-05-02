@@ -29,6 +29,11 @@ public class Library {
         return instance;
     }
     
+    public static void dropLibrary() {
+        instance = null;
+        System.gc();
+    }
+    
     public void addUser(User user) {
         if(database.containsKey(user.getID()) == true) {
             System.err.println("[ERR] This user has already been registered.");
@@ -53,11 +58,19 @@ public class Library {
     }
     
     public void returnBook(Book book) {
-        book.setLoanedTo(null);
+        User currentUser = book.getUserLoanedTo();
+        
+        if(!(currentUser == null)) {
+            currentUser.unloan(book);
+             book.setLoanedTo(null);
+        }
+        else {
+            System.out.println("This book is not currently on loan.");
+        }
     }
     
     public User[] getAllUsers() {
-        return (User[])database.values().toArray();
+        return database.values().toArray(new User[database.size()]);
     }
     
     public User searchByID(String ID) {

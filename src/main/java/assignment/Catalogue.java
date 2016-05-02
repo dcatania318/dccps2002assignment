@@ -23,6 +23,11 @@ public class Catalogue
         return instance;
     }
     
+    public static void dropCatalogue() {
+        instance = null;
+        System.gc();
+    }
+    
     public void addBook(Book book) {
         if(catalogue.containsKey(book.getIsbn())) {
             System.err.println("[ERR] Duplicate catalogue entries are not allowed.");
