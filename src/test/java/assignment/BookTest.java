@@ -54,9 +54,9 @@ public class BookTest
     }
 
     @Test
-    public void testSetGenre() {
+    public void testSetGenre()
+    {
         assertEquals("Software",book.getGenre());
-        
         Genre newGenre = new Genre("ICT");
         book.setGenre(newGenre);
         assertEquals("ICT",book.getGenre());

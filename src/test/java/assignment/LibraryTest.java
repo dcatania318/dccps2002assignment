@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package assignment;
-
-/**
- *
- * @author Connor
- */
 
 import java.util.Date;
 import org.junit.Before;
@@ -17,8 +7,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-public class LibraryTest {
-    
+public class LibraryTest
+{    
     static Book book1, book2, book3, book4;
     static User user1, user2;
     static Genre fantasyGenre, phiGenre;
@@ -26,7 +16,8 @@ public class LibraryTest {
     static Library library;
     
     @Before
-    public void setUp() {
+    public void setUp()
+    {
         fantasyGenre = new Genre("Fantasy");
         phiGenre = new Genre("Philosophy");
         book1 = new Book("978443", "The Hobbit", "J.R.R. Tolkien", fantasyGenre, 1937, 2);
@@ -48,7 +39,8 @@ public class LibraryTest {
     }
     
     @After
-    public void tearDown() {
+    public void tearDown()
+    {
         fantasyGenre = null;
         phiGenre = null;
         book1 = null;
@@ -65,12 +57,14 @@ public class LibraryTest {
     }
     
     @Test
-    public void addTest() {
+    public void addTest()
+    {
         assertThat(library.getAllUsers().length,is(2));
     }
     
     @Test
-    public void duplicateAddTest() {
+    public void duplicateAddTest()
+    {
         library.addUser(user1);
         library.addUser(user2);
         
@@ -78,7 +72,8 @@ public class LibraryTest {
     }
     
     @Test
-    public void removeUserTest() {
+    public void removeUserTest()
+    {
         library.removeUser(user1);
         
         assertThat(library.getAllUsers().length,is(1));
@@ -86,7 +81,8 @@ public class LibraryTest {
     }
     
     @Test
-    public void removeUserWithLoansTest() {
+    public void removeUserWithLoansTest()
+    {
         library.loanBookTo(book1, user1);
         library.removeUser(user1);
         
@@ -95,7 +91,8 @@ public class LibraryTest {
     }
     
     @Test
-    public void searchByIDTest() {
+    public void searchByIDTest()
+    {
         User search = library.searchByID("83294M");
         
         assertThat(search.getFullName(),is("Connor Attard"));
@@ -103,7 +100,8 @@ public class LibraryTest {
     }
     
     @Test
-    public void loanTest() {
+    public void loanTest()
+    {
         library.loanBookTo(book1, user1);
         library.loanBookTo(book2, user2);
         library.loanBookTo(book3, user1);
@@ -118,7 +116,8 @@ public class LibraryTest {
     }
     
     @Test
-    public void loanBookOnLoanTest() {
+    public void loanBookOnLoanTest()
+    {
         library.loanBookTo(book1, user1);
         library.loanBookTo(book1, user2);
          
@@ -128,7 +127,8 @@ public class LibraryTest {
     }
     
     @Test
-    public void exceedLoanLimitTest() {
+    public void exceedLoanLimitTest()
+    {
         library.loanBookTo(book1, user1);
         library.loanBookTo(book2, user1);
         library.loanBookTo(book3, user1);
@@ -139,7 +139,8 @@ public class LibraryTest {
     }
     
     @Test
-    public void returnTest() {
+    public void returnTest()
+    {
         library.loanBookTo(book1, user1);
         library.loanBookTo(book2, user2);
         
@@ -152,7 +153,8 @@ public class LibraryTest {
     }
     
     @Test
-    public void overdueTest() {
+    public void overdueTest()
+    {
         library.loanBookTo(book1, user1);
         
         book1.setDueDate(new Date(book1.getDateLoanedOut().getTime()-2419200000l));

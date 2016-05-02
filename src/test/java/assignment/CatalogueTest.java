@@ -1,28 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package assignment;
-
-/**
- *
- * @author Connor
- */
 
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class CatalogueTest {
-    
+public class CatalogueTest
+{   
     static Book book1, book2, book3, book4;
     static Genre fantasyGenre, phiGenre;
     static Catalogue catalogue;
     
     @Before
-    public void setUp() {
+    public void setUp()
+    {
         fantasyGenre = new Genre("Fantasy");
         phiGenre = new Genre("Philosophy");
         book1 = new Book("978443", "The Hobbit", "J.R.R. Tolkien", fantasyGenre, 1937, 2);
@@ -38,7 +29,8 @@ public class CatalogueTest {
     }
     
     @After
-    public void tearDown() {
+    public void tearDown()
+    {
         fantasyGenre = null;
         phiGenre = null;
         book1 = null;
@@ -51,7 +43,8 @@ public class CatalogueTest {
     }
     
     @Test
-    public void addAndSearchTest() {
+    public void addAndSearchTest()
+    {
         assertNotNull(catalogue.searchByISBN("978443"));
         assertNotNull(catalogue.searchByISBN("944322"));
         assertNotNull(catalogue.searchByISBN("944323"));
@@ -59,19 +52,22 @@ public class CatalogueTest {
     }
     
     @Test 
-    public void getAllBooksTest() {
+    public void getAllBooksTest()
+    {
         assertEquals(4,catalogue.getAllBooks().length);
     }
     
     @Test
-    public void duplicateAddTest() {
+    public void duplicateAddTest()
+    {
         catalogue.addBook(book1);
         
         assertEquals(4,catalogue.getAllBooks().length);
     }
     
     @Test
-    public void removeTest() {
+    public void removeTest()
+    {
         catalogue.removeBook(book1);
         catalogue.removeBook(book4);
         
@@ -82,7 +78,8 @@ public class CatalogueTest {
     }
     
     @Test
-    public void searchByYearOfPublicationTest() {
+    public void searchByYearOfPublicationTest()
+    {
         Book[] search = catalogue.searchByYearOfPublication(1957);
         
         assertEquals(1,search.length);
@@ -90,26 +87,26 @@ public class CatalogueTest {
     }
     
     @Test
-    public void searchByTitleTest() {
+    public void searchByTitleTest()
+    {
         Book[] search = catalogue.searchByTitle("The Lord of the Rings");
         
         assertEquals(2,search.length);
         
-        for(Book book : search) {
+        for(Book book : search)
             assertEquals("The Lord of the Rings", book.getTitle());
-        }
     }
     
     @Test
-    public void searchByGenreTest() {
+    public void searchByGenreTest()
+    {
         Book[] fantasySearch = catalogue.searchByGenre(fantasyGenre);
         Book[] phiSearch = catalogue.searchByGenre(phiGenre);
         
         assertEquals(3,fantasySearch.length);
         assertEquals("Ayn Rand",phiSearch[0].getAuthor());
         
-        for(Book book : fantasySearch) {
+        for(Book book : fantasySearch)
             assertEquals("J.R.R. Tolkien",book.getAuthor());
-        }
     }
 }

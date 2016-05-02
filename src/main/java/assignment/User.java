@@ -2,8 +2,8 @@ package assignment;
 
 import java.util.LinkedList;
 
-public class User {
-    
+public class User
+{    
     private String ID;
     private String fullName;
     private String address;
@@ -12,7 +12,8 @@ public class User {
     
     private LinkedList<Book> loans;
     
-    public User(String ID, String fullName, String address, int telephoneNo, int mobileNo) {
+    public User(String ID, String fullName, String address, int telephoneNo, int mobileNo)
+    {
         this.ID = ID;
         this.fullName = fullName;
         this.address = address;
@@ -22,14 +23,18 @@ public class User {
         loans = new LinkedList<Book>();
     }
     
-    public void loan(Book book) {
-        if(loans.size() == 3) {
+    public void loan(Book book)
+    {
+        if(loans.size() == 3)
+        {
             System.out.println("You cannot check out more than three books.");
             return;
         }
         
-        for(Book search : loans) {
-            if(search.isOverdue()) {
+        for(Book search : loans)
+        {
+            if(search.isOverdue())
+            {
                 System.out.println("Please return any overdue books before checking out another.");
                 return;
             }
@@ -39,55 +44,68 @@ public class User {
         book.setLoanedTo(this);
     }
     
-    public void unloan(Book book) {
+    public void unloan(Book book)
+    {
         loans.remove(book);
     }
     
-    public void setID(String ID) {
+    public void setID(String ID)
+    {
         this.ID = ID;
     }
     
-    public void setFullName(String fullName) {
+    public void setFullName(String fullName)
+    {
         this.fullName = fullName;
     }
     
-    public void setAddress(String address) {
+    public void setAddress(String address)
+    {
         this.address = address;
     }
     
-    public void setTelephoneNo(int telephoneNo) {
+    public void setTelephoneNo(int telephoneNo)
+    {
         this.telephoneNo = telephoneNo;
     }
     
-    public void setMobileNo(int mobileNo) {
+    public void setMobileNo(int mobileNo)
+    {
         this.mobileNo = mobileNo;
     }
     
-    public String getID() {
+    public String getID()
+    {
         return ID;
     }
     
-    public String getFullName() {
+    public String getFullName()
+    {
         return fullName;
     }
     
-    public String getAddress() {
+    public String getAddress()
+    {
         return address;
     }
     
-    public int getTelephoneNo() {
+    public int getTelephoneNo()
+    {
         return telephoneNo;
     }
     
-    public int getMobileNo() {
+    public int getMobileNo()
+    {
         return mobileNo;
     }
     
-    public Book[] getLoanedBooks() {
+    public Book[] getLoanedBooks()
+    {
         return loans.toArray(new Book[loans.size()]);
     }
     
-    public int getNumberOfLoans() {
+    public int getNumberOfLoans()
+    {
         return loans.size();
     }
 }

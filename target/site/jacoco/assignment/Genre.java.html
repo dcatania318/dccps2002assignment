@@ -1,80 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Genre.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Daniel Catania and Connor Attard</a> &gt; <a href="index.source.html" class="el_package">assignment</a> &gt; <span class="el_source">Genre.java</span></div><h1>Genre.java</h1><pre class="source lang-java linenums">package assignment;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Genre
 {   
-    private static HashMap&lt;String, Genre&gt; handles;
+    //private static HashSet&lt;String&gt; register = null;
     
     private ArrayList&lt;Book&gt; links;
     private String genreName;
     private String description;
     private int count;
     
-    private Genre(String genreName)
-<span class="fc" id="L16">    {</span>
-<span class="fc" id="L17">        this.genreName = genreName;</span>
-<span class="fc" id="L18">        this.links = new ArrayList&lt;Book&gt;();</span>
-<span class="fc" id="L19">        this.count = 0;</span>
-<span class="fc" id="L20">        this.description = null;</span>
-<span class="fc" id="L21">    }</span>
+    public Genre(String genreName)
+<span class="fc" id="L15">    {</span>
+<span class="fc" id="L16">        this.genreName = genreName;</span>
+<span class="fc" id="L17">        this.links = new ArrayList&lt;Book&gt;();</span>
+<span class="fc" id="L18">        this.count = 0;</span>
+<span class="fc" id="L19">        this.description = &quot;&quot;;</span>
+<span class="fc" id="L20">    }</span>
     
+    /*
     public static Genre createGenre(String genreName)
     {
-<span class="fc bfc" id="L25" title="All 2 branches covered.">        if(handles == null) </span>
+        if(register == null) 
         {
-<span class="fc" id="L27">            handles = new HashMap&lt;String, Genre&gt;();</span>
+            register = new HashSet&lt;String&gt;();
         }
         
-<span class="fc bfc" id="L30" title="All 2 branches covered.">        if(handles.containsKey(genreName) == false) </span>
+        if(register.contains(genreName) == true)
         {
-<span class="fc" id="L32">            handles.put(genreName, new Genre(genreName));</span>
+            return null;
         }
         
-<span class="fc" id="L35">        return handles.get(genreName);</span>
+        register.add(genreName);
+        return new Genre(genreName);
     }
+    */
     
     public void addLink(Book book) 
     {
-<span class="fc" id="L40">        links.add(book);</span>
-<span class="fc" id="L41">        this.count++;</span>
-<span class="fc" id="L42">    }</span>
+<span class="fc" id="L42">        links.add(book);</span>
+<span class="fc" id="L43">        this.count++;</span>
+<span class="fc" id="L44">    }</span>
     
     public void removeLink(Book book) 
     {
-<span class="fc" id="L46">        links.remove(book);</span>
-<span class="fc" id="L47">        this.count--;</span>
-<span class="fc" id="L48">    }</span>
+<span class="fc" id="L48">        links.remove(book);</span>
+<span class="fc" id="L49">        this.count--;</span>
+<span class="fc" id="L50">    }</span>
     
-    public static Genre getGenreHandle(String genreName) 
+    public void setGenreName(String genreName)
     {
-<span class="fc" id="L52">        return handles.get(genreName);</span>
-    } 
+<span class="nc" id="L54">        this.genreName = genreName;</span>
+<span class="nc" id="L55">    }</span>
     
     public void setDescription(String description) 
     {
-<span class="fc" id="L57">        this.description = description;</span>
-<span class="fc" id="L58">    }</span>
+<span class="fc" id="L59">        this.description = description;</span>
+<span class="fc" id="L60">    }</span>
     
     public String getDescription()
     {
-<span class="fc" id="L62">        return this.description;</span>
+<span class="fc" id="L64">        return this.description;</span>
     }
     
     public String getGenreName()
     {
-<span class="fc" id="L67">        return this.genreName;</span>
+<span class="fc" id="L69">        return this.genreName;</span>
     }
     
     public boolean containsBook(Book book)
     {
-<span class="fc" id="L72">        return links.contains(book);</span>
+<span class="fc" id="L74">        return links.contains(book);</span>
     }
     
     public int getCount()
     {
-<span class="fc" id="L77">        return this.count;</span>
+<span class="fc" id="L79">        return this.count;</span>
+    }
+    
+    public Book[] getBooks()
+    {
+<span class="fc" id="L84">        return links.toArray(new Book[links.size()]);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

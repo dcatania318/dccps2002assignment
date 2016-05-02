@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Book.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Daniel Catania and Connor Attard</a> &gt; <a href="index.source.html" class="el_package">assignment</a> &gt; <span class="el_source">Book.java</span></div><h1>Book.java</h1><pre class="source lang-java linenums">package assignment;
 
 import java.util.Date;
+import java.util.Calendar;
 
 public class Book
 {
@@ -10,93 +11,126 @@ public class Book
     private Genre genre;
     private int yearOfPublication;
     private int edition;
-    private User loanedTo; //Should be decoupled from individual book record IMO. Might cut down on memory usage.
-    private Date dateLoanedOut; //Ditto
+    private User loanedTo;
+    private Date dateLoanedOut;
+    private Date dueDate;
     
-    public Book(String isbn, String title, String author, String genreName, int yearOfPublication, int edition)
-<span class="fc" id="L17">    {</span>
-<span class="fc" id="L18">        this.isbn = isbn;</span>
-<span class="fc" id="L19">        this.title = title;</span>
-<span class="fc" id="L20">        this.author = author;</span>
-<span class="fc" id="L21">        this.yearOfPublication = yearOfPublication;</span>
-<span class="fc" id="L22">        this.edition = edition;</span>
-<span class="fc" id="L23">        this.loanedTo = null;</span>
-<span class="fc" id="L24">        this.dateLoanedOut = null;</span>
-        
-<span class="fc" id="L26">        this.genre = Genre.createGenre(genreName);</span>
-<span class="fc" id="L27">    }</span>
+    public Book(String isbn, String title, String author, Genre genre, int yearOfPublication, int edition)
+<span class="fc" id="L19">    {</span>
+<span class="fc" id="L20">        this.isbn = isbn;</span>
+<span class="fc" id="L21">        this.title = title;</span>
+<span class="fc" id="L22">        this.author = author;</span>
+<span class="fc" id="L23">        this.genre = genre;</span>
+<span class="fc" id="L24">        this.yearOfPublication = yearOfPublication;</span>
+<span class="fc" id="L25">        this.edition = edition;</span>
+<span class="fc" id="L26">        this.loanedTo = null;</span>
+<span class="fc" id="L27">        this.dateLoanedOut = null;</span>
+<span class="fc" id="L28">        this.dueDate = null;</span>
+<span class="fc" id="L29">    }</span>
     
+    public boolean isOverdue() {
+<span class="pc bpc" id="L32" title="1 of 4 branches missed.">        return !(loanedTo == null || dueDate.after(Calendar.getInstance().getTime()));</span>
+    }
+   
     public void setIsbn(String isbn)
     {
-<span class="fc" id="L31">        this.isbn = isbn;</span>
-<span class="fc" id="L32">    }</span>
+<span class="fc" id="L37">        this.isbn = isbn;</span>
+<span class="fc" id="L38">    }</span>
+    
     public void setTitle(String title)
     {
-<span class="fc" id="L35">        this.title = title;</span>
-<span class="fc" id="L36">    }</span>
+<span class="fc" id="L42">        this.title = title;</span>
+<span class="fc" id="L43">    }</span>
+    
     public void setAuthor(String author)  
     {
-<span class="fc" id="L39">        this.author = author;</span>
-<span class="fc" id="L40">    }</span>
-    public void setGenre(String genre)
+<span class="fc" id="L47">        this.author = author;</span>
+<span class="fc" id="L48">    }</span>
+    
+    public void setGenre(Genre genre)
     {
-<span class="fc" id="L43">        this.genre = Genre.createGenre(genre);</span>
-<span class="fc" id="L44">    }</span>
+<span class="fc" id="L52">        this.genre.removeLink(this);</span>
+<span class="fc" id="L53">        this.genre = genre;</span>
+<span class="fc" id="L54">        genre.addLink(this);</span>
+<span class="fc" id="L55">    }</span>
+    
+    public void setLoanedTo(User user)
+    {
+<span class="fc" id="L59">        this.loanedTo = user;</span>
+<span class="fc" id="L60">        this.dateLoanedOut = Calendar.getInstance().getTime();</span>
+<span class="fc" id="L61">        this.dueDate = new Date(2419200000l+dateLoanedOut.getTime());</span>
+<span class="fc" id="L62">    }</span>
+    
     public void setYearOfPublication(int yearOfPublication)
     {
-<span class="fc" id="L47">        this.yearOfPublication = yearOfPublication;</span>
-<span class="fc" id="L48">    }</span>
+<span class="fc" id="L66">        this.yearOfPublication = yearOfPublication;</span>
+<span class="fc" id="L67">    }</span>
+    
     public void setEdition(int edition)
     {
-<span class="fc" id="L51">        this.edition = edition;</span>
-<span class="fc" id="L52">    }</span>
+<span class="fc" id="L71">        this.edition = edition;</span>
+<span class="fc" id="L72">    }</span>
+    
+    //For testing purposes only
+    public void setDueDate(Date dueDate)
+    {
+<span class="fc" id="L77">        this.dueDate = dueDate;</span>
+<span class="fc" id="L78">    }</span>
     
     public String getIsbn()
     {
-<span class="fc" id="L56">        return isbn;</span>
-    }
-    public String getTitle()
-    {
-<span class="fc" id="L60">        return title;</span>
-    }
-    public String getAuthor()
-    {
-<span class="fc" id="L64">        return author;</span>
-    }
-    public String getGenre()
-    {
-<span class="fc" id="L68">        return genre.getGenreName();</span>
-    }
-    public Genre getGenreObject()
-    {
-<span class="fc" id="L72">        return genre;</span>
-    }
-    public int getYearOfPublication()
-    {
-<span class="fc" id="L76">        return yearOfPublication;</span>
-    }
-    public int getEdition()
-    {
-<span class="fc" id="L80">        return edition;</span>
+<span class="fc" id="L82">        return isbn;</span>
     }
     
-    public void loan(User user, Date currentDate)
+    public String getTitle()
     {
-<span class="fc" id="L85">        loanedTo = user;</span>
-<span class="fc" id="L86">        dateLoanedOut = currentDate;</span>
-<span class="fc" id="L87">    }</span>
+<span class="fc" id="L87">        return title;</span>
+    }
+    
+    public String getAuthor()
+    {
+<span class="fc" id="L92">        return author;</span>
+    }
+    
+    public String getGenre()
+    {
+<span class="fc" id="L97">        return genre.getGenreName();</span>
+    }
+    
+    public Genre getGenreObject()
+    {
+<span class="fc" id="L102">        return genre;</span>
+    }
+    
+    public int getYearOfPublication()
+    {
+<span class="fc" id="L107">        return yearOfPublication;</span>
+    }
+    
+    public int getEdition()
+    {
+<span class="fc" id="L112">        return edition;</span>
+    }
+    
     public void returned()
     {
-<span class="fc" id="L90">        loanedTo = null;</span>
-<span class="fc" id="L91">        dateLoanedOut = null;</span>
-<span class="fc" id="L92">    }</span>
+<span class="fc" id="L117">        loanedTo = null;</span>
+<span class="fc" id="L118">        dateLoanedOut = null;</span>
+<span class="fc" id="L119">        dueDate = null;</span>
+<span class="fc" id="L120">    }</span>
+    
     public User getUserLoanedTo()
     {
-<span class="fc" id="L95">        return loanedTo;</span>
+<span class="fc" id="L124">        return loanedTo;</span>
     }
+    
     public Date getDateLoanedOut()
     {
-<span class="fc" id="L99">        return dateLoanedOut;</span>
+<span class="fc" id="L129">        return dateLoanedOut;</span>
+    }
+    
+    public Date getDueDate() {
+<span class="nc" id="L133">        return dueDate;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

@@ -54,7 +54,8 @@ public class Book
         genre.addLink(this);
     }
     
-    public void setLoanedTo(User user) {
+    public void setLoanedTo(User user)
+    {
         this.loanedTo = user;
         this.dateLoanedOut = Calendar.getInstance().getTime();
         this.dueDate = new Date(2419200000l+dateLoanedOut.getTime());
@@ -71,7 +72,8 @@ public class Book
     }
     
     //For testing purposes only
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(Date dueDate)
+    {
         this.dueDate = dueDate;
     }
     

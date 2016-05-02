@@ -1,62 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Daniel Catania and Connor Attard</a> &gt; <a href="index.source.html" class="el_package">assignment</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package assignment;
 
+import java.util.LinkedList;
+
 public class User
-{
-    private String sIDno;
-    private String sFullName;
-    private String sAddress;
-    private int iTelephoneNo;
-    private int iMobileNo;
+{    
+    private String ID;
+    private String fullName;
+    private String address;
+    private int telephoneNo;
+    private int mobileNo;
     
-    public User(String sIDno, String sFullName, String sAddress, int iTelephoneNo, int iMobileNo)
-<span class="fc" id="L12">    {</span>
-<span class="fc" id="L13">        this.sIDno = sIDno;</span>
-<span class="fc" id="L14">        this.sFullName = sFullName;</span>
-<span class="fc" id="L15">        this.sAddress = sAddress;</span>
-<span class="fc" id="L16">        this.iTelephoneNo = iTelephoneNo;</span>
-<span class="fc" id="L17">        this.iMobileNo = iMobileNo;</span>
-<span class="fc" id="L18">    }</span>
+    private LinkedList&lt;Book&gt; loans;
     
-    public void setIDno(String sIDno)
-    {
-<span class="fc" id="L22">        this.sIDno = sIDno;</span>
-<span class="fc" id="L23">    }</span>
-    public void setFullName(String sFullName)
-    {
-<span class="fc" id="L26">        this.sFullName = sFullName;</span>
-<span class="fc" id="L27">    }</span>
-    public void setAddress(String sAddress)
-    {
-<span class="fc" id="L30">        this.sAddress = sAddress;</span>
-<span class="fc" id="L31">    }</span>
-    public void setTelephoneNo(int iTelephoneNo)
-    {
-<span class="fc" id="L34">        this.iTelephoneNo = iTelephoneNo;</span>
-<span class="fc" id="L35">    }</span>
-    public void setMobileNo(int iMobileNo)
-    {
-<span class="fc" id="L38">        this.iMobileNo = iMobileNo;</span>
-<span class="fc" id="L39">    }</span>
+    public User(String ID, String fullName, String address, int telephoneNo, int mobileNo)
+<span class="fc" id="L16">    {</span>
+<span class="fc" id="L17">        this.ID = ID;</span>
+<span class="fc" id="L18">        this.fullName = fullName;</span>
+<span class="fc" id="L19">        this.address = address;</span>
+<span class="fc" id="L20">        this.telephoneNo = telephoneNo;</span>
+<span class="fc" id="L21">        this.mobileNo = mobileNo;</span>
+        
+<span class="fc" id="L23">        loans = new LinkedList&lt;Book&gt;();</span>
+<span class="fc" id="L24">    }</span>
     
-    public String getIDno()
+    public void loan(Book book)
     {
-<span class="fc" id="L43">        return sIDno;</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        if(loans.size() == 3)</span>
+        {
+<span class="fc" id="L30">            System.out.println(&quot;You cannot check out more than three books.&quot;);</span>
+<span class="fc" id="L31">            return;</span>
+        }
+        
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        for(Book search : loans)</span>
+        {
+<span class="fc bfc" id="L36" title="All 2 branches covered.">            if(search.isOverdue())</span>
+            {
+<span class="fc" id="L38">                System.out.println(&quot;Please return any overdue books before checking out another.&quot;);</span>
+<span class="fc" id="L39">                return;</span>
+            }
+<span class="fc" id="L41">        }</span>
+        
+<span class="fc" id="L43">        loans.add(book);</span>
+<span class="fc" id="L44">        book.setLoanedTo(this);</span>
+<span class="fc" id="L45">    }</span>
+    
+    public void unloan(Book book)
+    {
+<span class="fc" id="L49">        loans.remove(book);</span>
+<span class="fc" id="L50">    }</span>
+    
+    public void setID(String ID)
+    {
+<span class="fc" id="L54">        this.ID = ID;</span>
+<span class="fc" id="L55">    }</span>
+    
+    public void setFullName(String fullName)
+    {
+<span class="fc" id="L59">        this.fullName = fullName;</span>
+<span class="fc" id="L60">    }</span>
+    
+    public void setAddress(String address)
+    {
+<span class="fc" id="L64">        this.address = address;</span>
+<span class="fc" id="L65">    }</span>
+    
+    public void setTelephoneNo(int telephoneNo)
+    {
+<span class="fc" id="L69">        this.telephoneNo = telephoneNo;</span>
+<span class="fc" id="L70">    }</span>
+    
+    public void setMobileNo(int mobileNo)
+    {
+<span class="fc" id="L74">        this.mobileNo = mobileNo;</span>
+<span class="fc" id="L75">    }</span>
+    
+    public String getID()
+    {
+<span class="fc" id="L79">        return ID;</span>
     }
+    
     public String getFullName()
     {
-<span class="fc" id="L47">        return sFullName;</span>
+<span class="fc" id="L84">        return fullName;</span>
     }
+    
     public String getAddress()
     {
-<span class="fc" id="L51">        return sAddress;</span>
+<span class="fc" id="L89">        return address;</span>
     }
+    
     public int getTelephoneNo()
     {
-<span class="fc" id="L55">        return iTelephoneNo;</span>
+<span class="fc" id="L94">        return telephoneNo;</span>
     }
+    
     public int getMobileNo()
     {
-<span class="fc" id="L59">        return iMobileNo;</span>
+<span class="fc" id="L99">        return mobileNo;</span>
+    }
+    
+    public Book[] getLoanedBooks()
+    {
+<span class="fc" id="L104">        return loans.toArray(new Book[loans.size()]);</span>
+    }
+    
+    public int getNumberOfLoans()
+    {
+<span class="fc" id="L109">        return loans.size();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

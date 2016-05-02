@@ -1,41 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Catalogue.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Daniel Catania and Connor Attard</a> &gt; <a href="index.source.html" class="el_package">assignment</a> &gt; <span class="el_source">Catalogue.java</span></div><h1>Catalogue.java</h1><pre class="source lang-java linenums">package assignment;
 
-import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.Map;
+import java.util.Collection;
+import java.util.ArrayList;
         
 public class Catalogue
 {
     
-<span class="nc" id="L8">    private static Catalogue instance = null;</span>
-<span class="nc" id="L9">    private static HashMap&lt;String, Book&gt; catalogue = null;</span>
+<span class="fc" id="L11">    private static Catalogue instance = null;</span>
+<span class="fc" id="L12">    private Map&lt;String, Book&gt; catalogue = null;</span>
     
     private Catalogue()
-<span class="nc" id="L12">    {</span>
-<span class="nc" id="L13">        catalogue = new HashMap&lt;String, Book&gt;();</span>
-<span class="nc" id="L14">    }</span>
+<span class="fc" id="L15">    {</span>
+<span class="fc" id="L16">        catalogue = new TreeMap&lt;String, Book&gt;();</span>
+<span class="fc" id="L17">    }</span>
     
-    public Catalogue createCatalogue()
+    public static Catalogue getInstance()
     {
-<span class="nc bnc" id="L18" title="All 2 branches missed.">        if(instance == null)</span>
-        {
-<span class="nc" id="L20">            instance = new Catalogue();</span>
-        }
-        else
-        {
-<span class="nc" id="L24">            System.err.println(&quot;[ERR] A Catalogue instance is already running.&quot;);</span>
-        }
+<span class="pc bpc" id="L21" title="1 of 2 branches missed.">        if(instance == null)</span>
+<span class="fc" id="L22">            instance = new Catalogue();</span>
         
-<span class="nc" id="L27">        return instance;</span>
+<span class="fc" id="L24">        return instance;</span>
     }
+    
+    public static void dropCatalogue()
+    {
+<span class="fc" id="L29">        instance = null;</span>
+<span class="fc" id="L30">    }</span>
     
     public void addBook(Book book)
     {
-<span class="nc bnc" id="L32" title="All 2 branches missed.">        if(catalogue.get(book.getIsbn()) != null)</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if(catalogue.containsKey(book.getIsbn()))</span>
         {
-<span class="nc" id="L34">            System.err.println(&quot;[ERR] Duplicate catalogue entries are not allowed.&quot;);</span>
-<span class="nc" id="L35">            return;</span>
+<span class="fc" id="L36">            System.err.println(&quot;[ERR] Duplicate catalogue entries are not allowed.&quot;);</span>
+<span class="fc" id="L37">            return;</span>
         }
         
-<span class="nc" id="L38">        catalogue.put(book.getIsbn(), book);</span>
-<span class="nc" id="L39">    }   </span>
+<span class="fc" id="L40">        catalogue.put(book.getIsbn(), book);</span>
+<span class="fc" id="L41">        book.getGenreObject().addLink(book);</span>
+<span class="fc" id="L42">    }</span>
+    
+    public void removeBook(Book book)
+    {
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        if(catalogue.remove(book.getIsbn()) == null)</span>
+<span class="nc" id="L47">            System.err.println(&quot;[ERR] Book not found.&quot;);</span>
+<span class="fc" id="L48">    }</span>
+    
+    public Book[] getAllBooks()
+    {
+<span class="fc" id="L52">        return catalogue.values().toArray(new Book[catalogue.size()]);</span>
+    }
+    
+    public Book searchByISBN(String isbn)
+    {
+<span class="fc" id="L57">        return catalogue.get(isbn);</span>
+    }
+    
+    public Book[] searchByTitle(String title)
+    {
+<span class="fc" id="L62">        Collection&lt;Book&gt; values = catalogue.values();</span>
+<span class="fc" id="L63">        ArrayList&lt;Book&gt; result = new ArrayList&lt;Book&gt;();</span>
+        
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        for(Book ptr : values)</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">            if(ptr.getTitle().equals(title))</span>
+<span class="fc" id="L67">                result.add(ptr);</span>
+        
+<span class="fc" id="L69">        return result.toArray(new Book[result.size()]);</span>
+    }
+    
+    public Book[] searchByYearOfPublication(int year)
+    {
+<span class="fc" id="L74">        Collection&lt;Book&gt; values = catalogue.values();</span>
+<span class="fc" id="L75">        ArrayList&lt;Book&gt; result = new ArrayList&lt;Book&gt;();</span>
+        
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        for(Book ptr : values)</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">            if(ptr.getYearOfPublication() == year)</span>
+<span class="fc" id="L79">                result.add(ptr);</span>
+
+<span class="fc" id="L81">        return result.toArray(new Book[result.size()]);</span>
+    }
+    
+    public Book[] searchByGenre(Genre genre)
+    {
+<span class="fc" id="L86">        return genre.getBooks();</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

@@ -49,7 +49,8 @@ public class Genre
         this.count--;
     }
     
-    public void setGenreName(String genreName) {
+    public void setGenreName(String genreName)
+    {
         this.genreName = genreName;
     }
     
@@ -78,7 +79,8 @@ public class Genre
         return this.count;
     }
     
-    public Book[] getBooks() {
+    public Book[] getBooks()
+    {
         return links.toArray(new Book[links.size()]);
     }
 }
