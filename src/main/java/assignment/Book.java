@@ -70,6 +70,11 @@ public class Book
         this.edition = edition;
     }
     
+    //For testing purposes only
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+    }
+    
     public String getIsbn()
     {
         return isbn;
@@ -120,5 +125,9 @@ public class Book
     public Date getDateLoanedOut()
     {
         return dateLoanedOut;
+    }
+    
+    public Date getDueDate() {
+        return dueDate;
     }
 }

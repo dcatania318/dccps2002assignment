@@ -10,6 +10,7 @@ package assignment;
  * @author Connor
  */
 
+import java.util.Date;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
@@ -65,7 +66,7 @@ public class LibraryTest {
     
     @Test
     public void addTest() {
-        assertEquals(2,library.getAllUsers().length);
+        assertThat(library.getAllUsers().length,is(2));
     }
     
     @Test
@@ -73,7 +74,24 @@ public class LibraryTest {
         library.addUser(user1);
         library.addUser(user2);
         
-        assertEquals(2,library.getAllUsers().length);
+        assertThat(library.getAllUsers().length,is(2));
+    }
+    
+    @Test
+    public void removeUserTest() {
+        library.removeUser(user1);
+        
+        assertThat(library.getAllUsers().length,is(1));
+        assertNull(library.searchByID("83294M"));
+    }
+    
+    @Test
+    public void removeUserWithLoansTest() {
+        library.loanBookTo(book1, user1);
+        library.removeUser(user1);
+        
+        assertThat(library.getAllUsers().length,is(2));
+        assertNotNull(library.searchByID("83294M"));
     }
     
     @Test
@@ -131,5 +149,15 @@ public class LibraryTest {
         
         assertNotNull(book2.getUserLoanedTo());
         assertThat(user2.getLoanedBooks().length,is(1));
+    }
+    
+    @Test
+    public void overdueTest() {
+        library.loanBookTo(book1, user1);
+        
+        book1.setDueDate(new Date(book1.getDateLoanedOut().getTime()-2419200000l));
+        
+        library.loanBookTo(book2, user1);
+        assertNull(book2.getUserLoanedTo());
     }
 }

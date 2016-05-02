@@ -10,15 +10,16 @@ package assignment;
  * @author Connor
  */
 
-import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Library {
     
     private static Library instance = null;
-    private HashMap<String,User> database = null;
+    private Map<String,User> database = null;
     
     private Library() {
-        this.database = new HashMap<String,User>();
+        this.database = new TreeMap<String,User>();
     }
     
     public static Library getInstance() {
@@ -35,7 +36,7 @@ public class Library {
     
     public void addUser(User user) {
         if(database.containsKey(user.getID()) == true) {
-            System.err.println("[ERR] This user has already been registered.");
+            System.out.println("This user has already been registered.");
             return;
         }
         
@@ -43,6 +44,11 @@ public class Library {
     }
     
     public void removeUser(User user) {
+        if(user.getNumberOfLoans() != 0) {
+            System.out.println("Users with outstanding loans cannot be deleted.");
+            return;
+        }
+      
         database.remove(user.getID());
     }
     

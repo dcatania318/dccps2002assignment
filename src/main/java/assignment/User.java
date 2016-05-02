@@ -86,4 +86,8 @@ public class User {
     public Book[] getLoanedBooks() {
         return loans.toArray(new Book[loans.size()]);
     }
+    
+    public int getNumberOfLoans() {
+        return loans.size();
+    }
 }
