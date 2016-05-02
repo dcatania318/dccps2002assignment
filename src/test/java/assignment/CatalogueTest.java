@@ -12,6 +12,8 @@ package assignment;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -22,7 +24,7 @@ public class CatalogueTest {
     static Catalogue catalogue;
     
     @BeforeClass
-    public static void setUp() {
+    public static void setGlobalEnvironment() {
         fantasyGenre = new Genre("Fantasy");
         phiGenre = new Genre("Philosophy");
         book1 = new Book("978443", "The Hobbit", "J.R.R. Tolkien", fantasyGenre, 1937, 2);
@@ -31,20 +33,33 @@ public class CatalogueTest {
         book4 = new Book("665322", "Atlas Shrugged", "Ayn Rand", phiGenre, 1957, 1);
         
         catalogue = Catalogue.getInstance();
+    }
+    
+    @Before
+    public void setUp() {
         catalogue.addBook(book1);
         catalogue.addBook(book2);
         catalogue.addBook(book3);
         catalogue.addBook(book4);
     }
     
+    @After
+    public void tearDown() {
+        catalogue.removeBook(book1);
+        catalogue.removeBook(book2);
+        catalogue.removeBook(book3);
+        catalogue.removeBook(book4);
+    }
+    
     @AfterClass
-    public static void tearDown() {
+    public static void cleanup() {
         fantasyGenre = null;
         phiGenre = null;
         book1 = null;
         book2 = null;
         book3 = null;
         book4 = null;
+        
         Runtime.getRuntime().gc();
     }
     
@@ -66,6 +81,17 @@ public class CatalogueTest {
         catalogue.addBook(book1);
         
         assertEquals(4,catalogue.getAllBooks().length);
+    }
+    
+    @Test
+    public void removeTest() {
+        catalogue.removeBook(book1);
+        catalogue.removeBook(book4);
+        
+        assertNull(catalogue.searchByISBN("978443"));
+        assertNull(catalogue.searchByISBN("665322"));
+        
+        assertEquals(2,catalogue.getAllBooks().length);
     }
     
     @Test
