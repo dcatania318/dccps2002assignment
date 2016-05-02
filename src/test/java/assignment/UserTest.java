@@ -19,7 +19,7 @@ public class UserTest
     public void tearDown()
     {
         user = null;
-        Runtime.getRuntime().gc();
+        System.gc();
     }
 
     @Test

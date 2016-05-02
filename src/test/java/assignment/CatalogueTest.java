@@ -10,8 +10,6 @@ package assignment;
  * @author Connor
  */
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
@@ -23,8 +21,8 @@ public class CatalogueTest {
     static Genre fantasyGenre, phiGenre;
     static Catalogue catalogue;
     
-    @BeforeClass
-    public static void setGlobalEnvironment() {
+    @Before
+    public void setUp() {
         fantasyGenre = new Genre("Fantasy");
         phiGenre = new Genre("Philosophy");
         book1 = new Book("978443", "The Hobbit", "J.R.R. Tolkien", fantasyGenre, 1937, 2);
@@ -33,10 +31,6 @@ public class CatalogueTest {
         book4 = new Book("665322", "Atlas Shrugged", "Ayn Rand", phiGenre, 1957, 1);
         
         catalogue = Catalogue.getInstance();
-    }
-    
-    @Before
-    public void setUp() {
         catalogue.addBook(book1);
         catalogue.addBook(book2);
         catalogue.addBook(book3);
@@ -45,22 +39,15 @@ public class CatalogueTest {
     
     @After
     public void tearDown() {
-        catalogue.removeBook(book1);
-        catalogue.removeBook(book2);
-        catalogue.removeBook(book3);
-        catalogue.removeBook(book4);
-    }
-    
-    @AfterClass
-    public static void cleanup() {
         fantasyGenre = null;
         phiGenre = null;
         book1 = null;
         book2 = null;
         book3 = null;
         book4 = null;
+        Catalogue.dropCatalogue();
         
-        Runtime.getRuntime().gc();
+        System.gc();
     }
     
     @Test
