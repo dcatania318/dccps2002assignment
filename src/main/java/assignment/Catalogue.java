@@ -51,7 +51,7 @@ public class Catalogue
     {
         return catalogue.values().toArray(new Book[catalogue.size()]);
     }
-    
+    /*
     public Book searchByISBN(String isbn)
     {
         return catalogue.get(isbn);
@@ -84,5 +84,51 @@ public class Catalogue
     public Book[] searchByGenre(Genre genre)
     {
         return genre.getBooks();
+    }
+    */
+    public Book[] search(Filter f) {
+        Collection<Book> values = catalogue.values();
+        ArrayList<Book> result = new ArrayList<Book>();
+        
+        for(Book book : values) {
+            if(f.getIsbn() != null) {
+                if(!book.getIsbn().equals(f.getIsbn())) {
+                    continue;
+                }
+            }
+            
+            if(f.getTitle() != null) {
+                if(!book.getTitle().contains(f.getTitle())) {
+                    continue;
+                }
+            }
+            
+            if(f.getAuthor() != null) {
+                if(!book.getAuthor().contains(f.getAuthor())) {
+                    continue;
+                }
+            }
+            
+            if(f.getGenre() != null) {
+                if(!book.getGenre().contains(f.getGenre())) {
+                    continue;
+                }
+            }
+            
+            if(f.getYearOfPublication() != -1) {
+                if(book.getYearOfPublication() != f.getYearOfPublication()) {
+                    continue;
+                }
+            }
+            
+            if(f.getEdition() != -1) {
+                if(book.getEdition() != f.getEdition()) {
+                    continue;
+                }
+            }
+            
+            result.add(book);
+        }
+        return result.toArray(new Book[result.size()]);
     }
 }
