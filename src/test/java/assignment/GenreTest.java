@@ -14,7 +14,7 @@ public class GenreTest
     public void setUp()
     {
         testGenre = new Genre("Computing");
-        testBook = new Book("9780132350884","Clean Code : A Handbook of Agile Software Craftsmanship", "Robert C. Martin",testGenre,2009,1);
+        testBook = new Book("9780132350884","Clean Code : A Handbook of Agile Software Craftsmanship", "Robert C. Martin",testGenre,2009,1); 
     }
     
     @After
@@ -57,5 +57,26 @@ public class GenreTest
                 + "steps known as an algorithm";
         testGenre.setDescription(d);
         assertEquals(testGenre.getDescription(),d);
+    }
+    
+    @Test
+    public void testGenreName()
+    {
+        assertEquals("Computing",testGenre.getGenreName());
+        testGenre.setGenreName("Science");
+        assertEquals("Science",testGenre.getGenreName());
+    }
+    
+    @Test
+    public void testGetBooks()
+    {
+        Book testBook2 = new Book("9780321928429","C Primer Plus", "Stephen Prata",testGenre,2013,6); 
+        testGenre.addLink(testBook);
+        testGenre.addLink(testBook2);
+        Book[] books = testGenre.getBooks();
+        assertEquals(2,books.length);
+        assertEquals(testBook,books[0]);
+        assertEquals(testBook2,books[1]);
+        testBook2 = null;
     }
 }
