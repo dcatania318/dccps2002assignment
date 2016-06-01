@@ -10,6 +10,7 @@ public class CatalogueTest
     static Book book1, book2, book3, book4;
     static Genre fantasyGenre, phiGenre;
     static Catalogue catalogue;
+    Filter f;
     
     @Before
     public void setUp()
@@ -26,6 +27,8 @@ public class CatalogueTest
         catalogue.addBook(book2);
         catalogue.addBook(book3);
         catalogue.addBook(book4);
+        
+        f = new Filter();
     }
     
     @After
@@ -37,18 +40,25 @@ public class CatalogueTest
         book2 = null;
         book3 = null;
         book4 = null;
+        f = null;
         Catalogue.dropCatalogue();
         
         System.gc();
     }
     
     @Test
-    public void addAndSearchTest()
+    public void searchTest()
     {
-        assertNotNull(catalogue.searchByISBN("978443"));
-        assertNotNull(catalogue.searchByISBN("944322"));
-        assertNotNull(catalogue.searchByISBN("944323"));
-        assertNotNull(catalogue.searchByISBN("665322"));
+        Book[] books;
+        String[] s = {"978443","944322","944323","665322"};
+        
+        for (String item : s)
+        {
+            f.setIsbn(item);
+            books = catalogue.search(f);
+            assertEquals(1,books.length);
+            assertEquals(item, books[0].getIsbn());
+        }
     }
     
     @Test 
@@ -71,33 +81,43 @@ public class CatalogueTest
         catalogue.removeBook(book1);
         catalogue.removeBook(book4);
         
-        assertNull(catalogue.searchByISBN("978443"));
-        assertNull(catalogue.searchByISBN("665322"));
+        Book[] books;
+        String[] s = {"978443","665322"};
+        
+        for (String item : s)
+        {
+            f.setIsbn(item);
+            books = catalogue.search(f);
+            assertEquals(0,books.length);
+        }
         
         assertEquals(2,catalogue.getAllBooks().length);
     }
     
-    @Test
+    /*@Test
     public void searchByYearOfPublicationTest()
     {
-        Book[] search = catalogue.searchByYearOfPublication(1957);
+        f.setYearOfPublication(1957);
+        Book[] books = catalogue.search(f);
         
-        assertEquals(1,search.length);
-        assertEquals("Ayn Rand",search[0].getAuthor());
-    }
+        assertEquals(1,books.length);
+        assertEquals(1957,books[0].getYearOfPublication());
+        assertEquals("Ayn Rand",books[0].getAuthor());
+    }*/
     
     @Test
     public void searchByTitleTest()
     {
-        Book[] search = catalogue.searchByTitle("The Lord of the Rings");
+        f.setTitle("Lord of the Rings");
+        Book[] books = catalogue.search(f);
         
-        assertEquals(2,search.length);
+        assertEquals(2,books.length);
         
-        for(Book book : search)
+        for(Book book : books)
             assertEquals("The Lord of the Rings", book.getTitle());
     }
     
-    @Test
+    /*@Test
     public void searchByGenreTest()
     {
         Book[] fantasySearch = catalogue.searchByGenre(fantasyGenre);
@@ -108,5 +128,31 @@ public class CatalogueTest
         
         for(Book book : fantasySearch)
             assertEquals("J.R.R. Tolkien",book.getAuthor());
+    }*/
+    
+    @Test
+    public void searchTest2()
+    {
+        f.setTitle("Lord of the Rings");
+        f.setYearOfPublication(1955);
+        Book[] books = catalogue.search(f);
+        
+        assertEquals(1,books.length);
+        assertEquals("The Lord of the Rings",books[0].getTitle());
+        assertEquals(1955,books[0].getYearOfPublication());
+    }
+    
+    @Test
+    public void searchTest3()
+    {
+        f.setGenre("fantasy");
+        f.setAuthor("Tolkien");
+        f.setEdition(2);
+        Book[] books = catalogue.search(f);
+        assertEquals(2,books.length);
+        assertEquals("J.R.R. Tolkien",books[0].getAuthor());
+        assertEquals("J.R.R. Tolkien",books[1].getAuthor());
+        assertEquals(2,books[0].getEdition());
+        assertEquals(2,books[1].getEdition());
     }
 }

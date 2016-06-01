@@ -19,7 +19,7 @@ public class Filter {
     
     public String getIsbn()
     {
-        return (isbn == null) ?  null : isbn.toLowerCase();
+        return (isbn == null) ?  null : isbn;
     }
     
     public String getTitle()

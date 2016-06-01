@@ -86,47 +86,48 @@ public class Catalogue
         return genre.getBooks();
     }
     */
-    public Book[] search(Filter f) {
+    public Book[] search(Filter f)
+    {
         Collection<Book> values = catalogue.values();
         ArrayList<Book> result = new ArrayList<Book>();
         
-        for(Book book : values) {
-            if(f.getIsbn() != null) {
-                if(!book.getIsbn().equals(f.getIsbn())) {
+        for(Book book : values)
+        {
+            if(f.getIsbn() != null)
+            {
+                if(!book.getIsbn().equals(f.getIsbn()))
                     continue;
-                }
             }
             
-            if(f.getTitle() != null) {
-                if(!book.getTitle().contains(f.getTitle())) {
+            if(f.getTitle() != null)
+            {
+                if(!(book.getTitle().toLowerCase()).contains(f.getTitle()))
                     continue;
-                }
             }
             
-            if(f.getAuthor() != null) {
-                if(!book.getAuthor().contains(f.getAuthor())) {
+            if(f.getAuthor() != null)
+            {
+                if(!(book.getAuthor().toLowerCase()).contains(f.getAuthor()))
                     continue;
-                }
             }
             
-            if(f.getGenre() != null) {
-                if(!book.getGenre().contains(f.getGenre())) {
+            if(f.getGenre() != null)
+            {
+                if(!(book.getGenre().toLowerCase()).contains(f.getGenre()))
                     continue;
-                }
             }
             
-            if(f.getYearOfPublication() != -1) {
-                if(book.getYearOfPublication() != f.getYearOfPublication()) {
+            if(f.getYearOfPublication() != -1)
+            {
+                if(book.getYearOfPublication() != f.getYearOfPublication())
                     continue;
-                }
             }
             
-            if(f.getEdition() != -1) {
-                if(book.getEdition() != f.getEdition()) {
+            if(f.getEdition() != -1)
+            {
+                if(book.getEdition() != f.getEdition())
                     continue;
-                }
             }
-            
             result.add(book);
         }
         return result.toArray(new Book[result.size()]);
