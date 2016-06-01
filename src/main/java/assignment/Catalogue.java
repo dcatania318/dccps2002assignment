@@ -86,7 +86,7 @@ public class Catalogue
         return genre.getBooks();
     }
     */
-    public Book[] search(Filter f)
+    public Book[] searchForBooks(Filter f)
     {
         Collection<Book> values = catalogue.values();
         ArrayList<Book> result = new ArrayList<Book>();

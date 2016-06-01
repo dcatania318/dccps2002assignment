@@ -79,7 +79,7 @@ public class Library
         return database.values().toArray(new User[database.size()]);
     }
     
-    public User searchByID(String ID)
+    public User getUserWithID(String ID)
     {
        return database.get(ID);
     }

@@ -77,7 +77,7 @@ public class LibraryTest
         library.removeUser(user1);
         
         assertThat(library.getAllUsers().length,is(1));
-        assertNull(library.searchByID("83294M"));
+        assertNull(library.getUserWithID("83294M"));
     }
     
     @Test
@@ -87,13 +87,13 @@ public class LibraryTest
         library.removeUser(user1);
         
         assertThat(library.getAllUsers().length,is(2));
-        assertNotNull(library.searchByID("83294M"));
+        assertNotNull(library.getUserWithID("83294M"));
     }
     
     @Test
-    public void searchByIDTest()
+    public void getUserIDTest()
     {
-        User search = library.searchByID("83294M");
+        User search = library.getUserWithID("83294M");
         
         assertThat(search.getFullName(),is("Connor Attard"));
         assertThat(search.getAddress(),is("Atlantis"));
@@ -161,5 +161,19 @@ public class LibraryTest
         
         library.loanBookTo(book2, user1);
         assertNull(book2.getUserLoanedTo());
+    }
+    
+    @Test
+    public void getAllUsersTest()
+    {
+        User[] users = library.getAllUsers();
+        assertEquals(2,users.length);
+    }
+    
+    @Test
+    public void getUserWithIDTest()
+    {
+        User user1 = library.getUserWithID("83294M");
+        assertEquals("Connor Attard",user1.getFullName());
     }
 }

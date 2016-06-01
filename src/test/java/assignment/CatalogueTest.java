@@ -55,7 +55,7 @@ public class CatalogueTest
         for (String item : s)
         {
             f.setIsbn(item);
-            books = catalogue.search(f);
+            books = catalogue.searchForBooks(f);
             assertEquals(1,books.length);
             assertEquals(item, books[0].getIsbn());
         }
@@ -87,7 +87,7 @@ public class CatalogueTest
         for (String item : s)
         {
             f.setIsbn(item);
-            books = catalogue.search(f);
+            books = catalogue.searchForBooks(f);
             assertEquals(0,books.length);
         }
         
@@ -109,7 +109,7 @@ public class CatalogueTest
     public void searchByTitleTest()
     {
         f.setTitle("Lord of the Rings");
-        Book[] books = catalogue.search(f);
+        Book[] books = catalogue.searchForBooks(f);
         
         assertEquals(2,books.length);
         
@@ -135,7 +135,7 @@ public class CatalogueTest
     {
         f.setTitle("Lord of the Rings");
         f.setYearOfPublication(1955);
-        Book[] books = catalogue.search(f);
+        Book[] books = catalogue.searchForBooks(f);
         
         assertEquals(1,books.length);
         assertEquals("The Lord of the Rings",books[0].getTitle());
@@ -148,7 +148,7 @@ public class CatalogueTest
         f.setGenre("fantasy");
         f.setAuthor("Tolkien");
         f.setEdition(2);
-        Book[] books = catalogue.search(f);
+        Book[] books = catalogue.searchForBooks(f);
         assertEquals(2,books.length);
         assertEquals("J.R.R. Tolkien",books[0].getAuthor());
         assertEquals("J.R.R. Tolkien",books[1].getAuthor());
