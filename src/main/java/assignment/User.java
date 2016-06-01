@@ -2,7 +2,7 @@ package assignment;
 
 import java.util.LinkedList;
 
-public class User
+public class User extends Observer
 {    
     private String ID;
     private String fullName;
@@ -21,6 +21,11 @@ public class User
         this.mobileNo = mobileNo;
         
         loans = new LinkedList<Book>();
+    }
+    
+    @Override
+    public void update(int pos) {
+        System.out.println(" "); 
     }
     
     public void loan(Book book)

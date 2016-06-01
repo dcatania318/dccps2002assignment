@@ -63,10 +63,10 @@ public class Library
     {
         User currentUser = book.getUserLoanedTo();
         
-        if(!(currentUser == null))
+        if(currentUser != null)
         {
             currentUser.unloan(book);
-            book.setLoanedTo(null);
+            book.returned();
         }
         else
         {

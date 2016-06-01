@@ -1,6 +1,7 @@
 package assignment;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.Calendar;
 
 public class Book
@@ -15,6 +16,8 @@ public class Book
     private Date dateLoanedOut;
     private Date dueDate;
     
+    private LinkedList<Observer> observers;
+    
     public Book(String isbn, String title, String author, Genre genre, int yearOfPublication, int edition)
     {
         this.isbn = isbn;
@@ -26,7 +29,30 @@ public class Book
         this.loanedTo = null;
         this.dateLoanedOut = null;
         this.dueDate = null;
+        
+        observers = new LinkedList<Observer>();
     }
+    
+    /*
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+        notifyObservers();
+    }
+    */
+
+   public void attach(Observer observer) {
+      observers.add(observer);		
+   }
+
+   public void notifyObservers(){
+      for (Observer observer : observers) {
+         observer.update(observers.indexOf(observer));
+      }
+   }
     
     public boolean isOverdue() {
         return !(loanedTo == null || dueDate.after(Calendar.getInstance().getTime()));
@@ -117,6 +143,13 @@ public class Book
         loanedTo = null;
         dateLoanedOut = null;
         dueDate = null;
+        
+        User next = (User)observers.pollFirst();
+        
+        if(next != null) {
+            Library.getInstance().loanBookTo(this, next);
+            notifyObservers();
+        }
     }
     
     public User getUserLoanedTo()
