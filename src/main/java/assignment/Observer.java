@@ -11,7 +11,5 @@ package assignment;
  */
 public abstract class Observer {
     
-    protected User subject;
-    
-    public abstract void update(int pos);
+    public abstract void update(int pos, Book book);
 }

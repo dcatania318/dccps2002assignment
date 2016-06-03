@@ -24,15 +24,16 @@ public class User extends Observer
     }
     
     @Override
-    public void update(int pos) {
-        System.out.println(" "); 
+    public void update(int pos, Book book) 
+    {
+        System.out.println("[LIBRARY] You're currently queued for " + book.getTitle() + ". Current position: " + pos + " (" + this.getFullName() + ")"); 
     }
     
     public void loan(Book book)
     {
         if(loans.size() == 3)
         {
-            System.out.println("You cannot check out more than three books.");
+            System.out.println("[LIBRARY] You cannot check out more than three books.");
             return;
         }
         
@@ -40,7 +41,7 @@ public class User extends Observer
         {
             if(search.isOverdue())
             {
-                System.out.println("Please return any overdue books before checking out another.");
+                System.out.println("[LIBRARY] Please return any overdue books before checking out another.");
                 return;
             }
         }

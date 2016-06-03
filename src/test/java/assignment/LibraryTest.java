@@ -10,7 +10,7 @@ import static org.hamcrest.CoreMatchers.*;
 public class LibraryTest
 {    
     static Book book1, book2, book3, book4;
-    static User user1, user2;
+    static User user1, user2, user3, user4;
     static Genre fantasyGenre, phiGenre;
     static Catalogue catalogue;
     static Library library;
@@ -26,6 +26,8 @@ public class LibraryTest
         book4 = new Book("665322", "Atlas Shrugged", "Ayn Rand", phiGenre, 1957, 1);
         user1 = new User("83294M", "Connor Attard", "Atlantis", 55552222, 99446655);
         user2 = new User("43495M", "Daniel Catania", "Babylon", 55557878, 99885522);
+        user3 = new User("58356M", "Joseph Busuttil", "Zimbabwe", 25254444, 79442345);
+        user4 = new User("76476M", "Simon Muscat", "Somalia", 76555577, 77890024);
         
         catalogue = Catalogue.getInstance();        
         catalogue.addBook(book1);
@@ -127,6 +129,25 @@ public class LibraryTest
     }
     
     @Test
+    public void interestFeatureTest() 
+    {
+        library.loanBookTo(book1, user1);
+        library.loanBookTo(book2, user2);
+        
+        book1.attach(user2);
+        book1.attach(user3);
+        book1.attach(user4);
+        book2.attach(user3);
+        book2.attach(user1);
+        
+        library.returnBook(book1);
+        assertEquals(user2, book1.getUserLoanedTo());
+        
+        library.returnBook(book2);
+        assertEquals(user3, book2.getUserLoanedTo());
+    }
+    
+    @Test
     public void exceedLoanLimitTest()
     {
         library.loanBookTo(book1, user1);
@@ -173,7 +194,7 @@ public class LibraryTest
     @Test
     public void getUserWithIDTest()
     {
-        User user1 = library.getUserWithID("83294M");
+        user1 = library.getUserWithID("83294M");
         assertEquals("Connor Attard",user1.getFullName());
     }
 }

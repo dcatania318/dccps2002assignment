@@ -30,7 +30,7 @@ public class Library
     {
         if(database.containsKey(user.getID()) == true)
         {
-            System.out.println("This user has already been registered.");
+            System.out.println("[LIBRARY] This user has already been registered.");
             return;
         }
         
@@ -41,7 +41,7 @@ public class Library
     {
         if(user.getNumberOfLoans() != 0)
         {
-            System.out.println("Users with outstanding loans cannot be deleted.");
+            System.out.println("[LIBRARY] Users with outstanding loans cannot be deleted.");
             return;
         }
       
@@ -52,7 +52,7 @@ public class Library
     {
         if(book.getUserLoanedTo() != null)
         {
-            System.out.println("This book has already been loaned.");
+            System.out.println("[LIBRARY] This book has already been loaned.");
             return;
         }
         
@@ -70,7 +70,7 @@ public class Library
         }
         else
         {
-            System.out.println("This book is not currently on loan.");
+            System.out.println("[LIBRARY] This book is not currently on loan.");
         }
     }
     

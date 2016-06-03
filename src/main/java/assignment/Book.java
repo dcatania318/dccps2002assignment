@@ -50,7 +50,7 @@ public class Book
 
    public void notifyObservers(){
       for (Observer observer : observers) {
-         observer.update(observers.indexOf(observer));
+         observer.update(observers.indexOf(observer), this);
       }
    }
     
