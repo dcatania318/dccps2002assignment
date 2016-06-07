@@ -119,11 +119,11 @@ public class CatalogueTest
     @Test
     public void searchByISBNTest()
     {
-        f.setIsbn("978443");
+        f.setIsbn("944322");
         Book[] books = catalogue.searchForBooks(f);
         
         assertThat(books.length, is(1));
-        assertThat(books[0].getIsbn(), is("978443"));
+        assertThat(books[0].getIsbn(), is("944322"));
     }
     
     @Test
