@@ -115,13 +115,13 @@ public class CatalogueTest
     @Test
     public void searchByTitleTest()
     {
-        f.setTitle("Lord of the Rings");
+        f.setTitle("Atlas");
         Book[] books = catalogue.searchForBooks(f);
         
-        assertEquals(2,books.length);
+        assertEquals(1,books.length);
         
         for(Book book : books)
-            assertEquals("The Lord of the Rings", book.getTitle());
+            assertEquals("Atlas Shrugged", book.getTitle());
     }
     
     @Test
@@ -132,6 +132,16 @@ public class CatalogueTest
         
         assertThat(books.length, is(1));
         assertThat(books[0].getIsbn(), is("944322"));
+    }
+    
+    @Test
+    public void searchNoResultsTest()
+    {
+        f.setTitle("Moby Dick");
+        f.setYearOfPublication(1937);
+        Book[] books = catalogue.searchForBooks(f);
+        
+        assertThat(books.length, is(0));
     }
     
     @Test
