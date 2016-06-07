@@ -86,7 +86,7 @@ public class Catalogue
             
             if(f.getGenre() != null)
             {
-                if(!(book.getGenre().toLowerCase()).contains(f.getGenre()))
+                if(!(book.getGenre().toLowerCase()).equals(f.getGenre()))
                     continue;
             }
             

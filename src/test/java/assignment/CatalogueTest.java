@@ -46,7 +46,7 @@ public class CatalogueTest
         
         System.gc();
     }
-    
+    /*
     @Test
     public void searchTest()
     {
@@ -61,6 +61,7 @@ public class CatalogueTest
             assertEquals(item, books[0].getIsbn());
         }
     }
+    */
     
     @Test 
     public void getAllBooksTest()
@@ -105,6 +106,13 @@ public class CatalogueTest
     }
     
     @Test
+    public void allPassFilterTest()
+    {
+        Book[] books = catalogue.searchForBooks(f);
+        assertThat(books.length, is(4));
+    }
+    
+    @Test
     public void searchByTitleTest()
     {
         f.setTitle("Lord of the Rings");
@@ -127,7 +135,7 @@ public class CatalogueTest
     }
     
     @Test
-    public void searchTest2()
+    public void searchByTwoFieldsTest()
     {
         f.setTitle("Lord of the Rings");
         f.setYearOfPublication(1955);
@@ -139,7 +147,7 @@ public class CatalogueTest
     }
     
     @Test
-    public void searchTest3()
+    public void searchByNarrowerTest()
     {
         f.setGenre("fantasy");
         f.setAuthor("Tolkien");
