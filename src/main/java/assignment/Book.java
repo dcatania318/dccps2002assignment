@@ -153,9 +153,4 @@ public class Book
     {
         return dateLoanedOut;
     }
-    
-    public Date getDueDate()
-    {
-        return dueDate;
-    }
 }

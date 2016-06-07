@@ -174,6 +174,13 @@ public class LibraryTest
     }
     
     @Test
+    public void returnNotLoanedTest()
+    {
+        library.returnBook(book1);
+        assertNull(book1.getUserLoanedTo());
+    }
+    
+    @Test
     public void overdueTest()
     {
         library.loanBookTo(book1, user1);

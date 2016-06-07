@@ -96,6 +96,15 @@ public class CatalogueTest
     }
     
     @Test
+    public void removeInexistentTest()
+    {
+        catalogue.removeBook(book1);
+        catalogue.removeBook(book1);
+        
+        assertEquals(3,catalogue.getAllBooks().length);
+    }
+    
+    @Test
     public void searchByTitleTest()
     {
         f.setTitle("Lord of the Rings");

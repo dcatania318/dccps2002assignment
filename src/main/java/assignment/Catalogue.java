@@ -33,7 +33,7 @@ public class Catalogue
     {
         if(catalogue.containsKey(book.getIsbn()))
         {
-            System.err.println("[ERR] Duplicate catalogue entries are not allowed.");
+            System.err.println("[LIBRARY] Duplicate catalogue entries are not allowed.");
             return;
         }
         
@@ -44,7 +44,7 @@ public class Catalogue
     public void removeBook(Book book)
     {
         if(catalogue.remove(book.getIsbn()) == null)
-            System.err.println("[ERR] Book not found.");
+            System.err.println("[LIBRARY] Book not found.");
     }
     
     public Book[] getAllBooks()
@@ -101,8 +101,10 @@ public class Catalogue
                 if(book.getEdition() != f.getEdition())
                     continue;
             }
+            
             result.add(book);
         }
+        
         return result.toArray(new Book[result.size()]);
     }
 }
