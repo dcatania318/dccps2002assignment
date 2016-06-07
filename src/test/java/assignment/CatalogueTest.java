@@ -46,22 +46,6 @@ public class CatalogueTest
         
         System.gc();
     }
-    /*
-    @Test
-    public void searchTest()
-    {
-        Book[] books;
-        String[] s = {"978443","944322","944323","665322"};
-        
-        for (String item : s)
-        {
-            f.setIsbn(item);
-            books = catalogue.searchForBooks(f);
-            assertEquals(1,books.length);
-            assertEquals(item, books[0].getIsbn());
-        }
-    }
-    */
     
     @Test 
     public void getAllBooksTest()
@@ -157,16 +141,30 @@ public class CatalogueTest
     }
     
     @Test
-    public void searchByNarrowerTest()
+    public void searchMultipleTest()
     {
         f.setGenre("fantasy");
         f.setAuthor("Tolkien");
         f.setEdition(2);
         Book[] books = catalogue.searchForBooks(f);
+        
         assertEquals(2,books.length);
         assertEquals("J.R.R. Tolkien",books[0].getAuthor());
         assertEquals("J.R.R. Tolkien",books[1].getAuthor());
         assertEquals(2,books[0].getEdition());
         assertEquals(2,books[1].getEdition());
+    }
+    
+    @Test
+    public void searchAllFieldsTest()
+    {
+        f.setTitle("Lord of the Rings");
+        f.setGenre("Fantasy");
+        f.setAuthor("Tolkien");
+        f.setEdition(2);
+        f.setYearOfPublication(1955);
+        Book[] books = catalogue.searchForBooks(f);
+        
+        assertThat(books.length, is(1));
     }
 }
