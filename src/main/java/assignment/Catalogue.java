@@ -62,7 +62,14 @@ public class Catalogue
             if(f.getIsbn() != null)
             {
                 if(!book.getIsbn().equals(f.getIsbn()))
+                {    
                     continue;
+                }
+                else
+                {
+                    result.add(book);
+                    break;
+                }
             }
             
             if(f.getTitle() != null)

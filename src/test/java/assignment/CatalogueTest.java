@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 
 public class CatalogueTest
 {   
@@ -104,6 +105,16 @@ public class CatalogueTest
         
         for(Book book : books)
             assertEquals("The Lord of the Rings", book.getTitle());
+    }
+    
+    @Test
+    public void searchByISBNTest()
+    {
+        f.setIsbn("978443");
+        Book[] books = catalogue.searchForBooks(f);
+        
+        assertThat(books.length, is(1));
+        assertThat(books[0].getIsbn(), is("978443"));
     }
     
     @Test
