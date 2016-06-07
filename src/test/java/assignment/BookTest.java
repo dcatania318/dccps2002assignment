@@ -1,10 +1,10 @@
 package assignment;
 
-import java.util.Calendar;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.util.Date;
 
 public class BookTest
 {
@@ -88,7 +88,6 @@ public class BookTest
         User user = new User("83294M","Connor Attard","Marsaskala",21249200,79249200);
         book.setLoanedTo(user);
         assertEquals(user,book.getUserLoanedTo());
-        //assertEquals(0,Calendar.getInstance().getTime().compareTo(book.getDateLoanedOut()));
     }
 
     @Test
@@ -97,5 +96,13 @@ public class BookTest
         book.returned();
         assertEquals(null,book.getUserLoanedTo());
         assertEquals(null,book.getDateLoanedOut());
-    }  
+    }
+    
+    @Test
+    public void testIsOverdue()
+    {
+        assertEquals(false,book.isOverdue());
+        //book.setDueDate(book.getDateLoanedOut().getTime()-2419200000l));
+        //assertEquals(true,book.isOverdue());
+    }
 }

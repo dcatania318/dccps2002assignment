@@ -1,6 +1,7 @@
 package assignment;
 
-public class Filter {
+public class Filter
+{
     private String isbn;
     private String title;
     private String author;
@@ -8,7 +9,8 @@ public class Filter {
     private int yearOfPublication;
     private int edition;
     
-    public Filter() {
+    public Filter()
+    {
         this.isbn = null;
         this.title = null;
         this.author = null;

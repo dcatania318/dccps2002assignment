@@ -94,17 +94,6 @@ public class CatalogueTest
         assertEquals(2,catalogue.getAllBooks().length);
     }
     
-    /*@Test
-    public void searchByYearOfPublicationTest()
-    {
-        f.setYearOfPublication(1957);
-        Book[] books = catalogue.search(f);
-        
-        assertEquals(1,books.length);
-        assertEquals(1957,books[0].getYearOfPublication());
-        assertEquals("Ayn Rand",books[0].getAuthor());
-    }*/
-    
     @Test
     public void searchByTitleTest()
     {
@@ -116,19 +105,6 @@ public class CatalogueTest
         for(Book book : books)
             assertEquals("The Lord of the Rings", book.getTitle());
     }
-    
-    /*@Test
-    public void searchByGenreTest()
-    {
-        Book[] fantasySearch = catalogue.searchByGenre(fantasyGenre);
-        Book[] phiSearch = catalogue.searchByGenre(phiGenre);
-        
-        assertEquals(3,fantasySearch.length);
-        assertEquals("Ayn Rand",phiSearch[0].getAuthor());
-        
-        for(Book book : fantasySearch)
-            assertEquals("J.R.R. Tolkien",book.getAuthor());
-    }*/
     
     @Test
     public void searchTest2()

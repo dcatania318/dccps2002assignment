@@ -33,28 +33,19 @@ public class Book
         observers = new LinkedList<Observer>();
     }
     
-    /*
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-        notifyObservers();
-    }
-    */
-
-   public void attach(Observer observer) {
+   public void attach(Observer observer)
+   {
       observers.add(observer);		
    }
 
-   public void notifyObservers(){
-      for (Observer observer : observers) {
+   public void notifyObservers()
+   {
+      for (Observer observer : observers)
          observer.update(observers.indexOf(observer), this);
-      }
    }
     
-    public boolean isOverdue() {
+    public boolean isOverdue() 
+    {
         return !(loanedTo == null || dueDate.after(Calendar.getInstance().getTime()));
     }
    
@@ -146,7 +137,8 @@ public class Book
         
         User next = (User)observers.pollFirst();
         
-        if(next != null) {
+        if(next != null)
+        {
             Library.getInstance().loanBookTo(this, next);
             notifyObservers();
         }
@@ -162,7 +154,8 @@ public class Book
         return dateLoanedOut;
     }
     
-    public Date getDueDate() {
+    public Date getDueDate()
+    {
         return dueDate;
     }
 }

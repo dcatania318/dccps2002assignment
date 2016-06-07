@@ -51,41 +51,7 @@ public class Catalogue
     {
         return catalogue.values().toArray(new Book[catalogue.size()]);
     }
-    /*
-    public Book searchByISBN(String isbn)
-    {
-        return catalogue.get(isbn);
-    }
     
-    public Book[] searchByTitle(String title)
-    {
-        Collection<Book> values = catalogue.values();
-        ArrayList<Book> result = new ArrayList<Book>();
-        
-        for(Book ptr : values)
-            if(ptr.getTitle().equals(title))
-                result.add(ptr);
-        
-        return result.toArray(new Book[result.size()]);
-    }
-    
-    public Book[] searchByYearOfPublication(int year)
-    {
-        Collection<Book> values = catalogue.values();
-        ArrayList<Book> result = new ArrayList<Book>();
-        
-        for(Book ptr : values)
-            if(ptr.getYearOfPublication() == year)
-                result.add(ptr);
-
-        return result.toArray(new Book[result.size()]);
-    }
-    
-    public Book[] searchByGenre(Genre genre)
-    {
-        return genre.getBooks();
-    }
-    */
     public Book[] searchForBooks(Filter f)
     {
         Collection<Book> values = catalogue.values();

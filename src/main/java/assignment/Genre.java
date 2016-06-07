@@ -3,9 +3,7 @@ package assignment;
 import java.util.ArrayList;
 
 public class Genre
-{   
-    //private static HashSet<String> register = null;
-    
+{    
     private ArrayList<Book> links;
     private String genreName;
     private String description;
@@ -18,24 +16,6 @@ public class Genre
         this.count = 0;
         this.description = "";
     }
-    
-    /*
-    public static Genre createGenre(String genreName)
-    {
-        if(register == null) 
-        {
-            register = new HashSet<String>();
-        }
-        
-        if(register.contains(genreName) == true)
-        {
-            return null;
-        }
-        
-        register.add(genreName);
-        return new Genre(genreName);
-    }
-    */
     
     public void addLink(Book book) 
     {

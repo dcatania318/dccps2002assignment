@@ -25,15 +25,6 @@ public class GenreTest
         Runtime.getRuntime().gc();
     }
 
-    /*
-    @Test
-    public void testCreateGenre()
-    {
-        assertNotNull(Genre.createGenre("Horror"));
-        assertNull(Genre.createGenre("Horror"));
-    }
-*/
-
     @Test
     public void testLinksAndContainsAndCount()
     {

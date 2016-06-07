@@ -69,9 +69,7 @@ public class Library
             book.returned();
         }
         else
-        {
             System.out.println("[LIBRARY] This book is not currently on loan.");
-        }
     }
     
     public User[] getAllUsers()
